@@ -29,14 +29,21 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
         public SelectList RoleNameSL { get; set; }
         public void PopulateRoleDropDownList(PlannerContext _context)
         {
-            string[] names = Enum.GetNames(typeof(Role));
+            string[] namesValue = Enum.GetNames(typeof(Role));
+            string[] namesText = Enum.GetNames(typeof(Role));
             Role[] values = (Role[])Enum.GetValues(typeof(Role));
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 0; i < namesText.Length; i++)
             {
-                names[i] = names[i].ToString().Replace("_", " ");
+                namesText[i] = namesText[i].ToString().Replace("_", " ");
             }
-            RoleNameSL = new SelectList(names);
-        }
+
+            string result1 = string.Join(",", namesValue);
+            string result2 = string.Join(",", namesText);
+            Dictionary<string, string> selectObject = new Dictionary<string, string>();
+            selectObject.Add(result1, result2);
+
+            RoleNameSL = new SelectList(selectObject, "result1", "result2");
+        } 
 
         public SelectList MemberNameSL { get; set; }
         public void PopulateRoleMembersDownList(PlannerContext _context)
@@ -44,7 +51,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
             var roleQuery = from d in _context.Members
                             orderby d.Name // Sort by name.
                             select d.Name;
-            MemberNameSL = new SelectList(roleQuery);
+            MemberNameSL = new SelectList(roleQuery, "MemberID", "Name");
         }
 
         [BindProperty]

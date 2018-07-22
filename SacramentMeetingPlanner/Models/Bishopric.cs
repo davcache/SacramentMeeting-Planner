@@ -14,13 +14,20 @@ namespace SacramentMeetingPlanner.Models
     public class Bishopric
     {
         public int ID { get; set; }
-        public Members Name { get; set; }
+
+        [Display(Name = "Member ID")]
+        public Members Member { get; set; }
+
+        [Display(Name = "Bishopric ID")]
+        public int BishopricID { get; set; }
+
+        //public Members Name { get; set; }
         public Role Role { get; set; }
 
         [Display(Name = "Released Flag")]
         public bool? ReleasedFlag { get; set; } = false;
 
-        [Display(Name = "Member ID")]
-        public Members Member { get; set; }
+        
+        
     }
 }

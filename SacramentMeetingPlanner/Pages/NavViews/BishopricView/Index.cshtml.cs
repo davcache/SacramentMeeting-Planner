@@ -22,7 +22,10 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
 
         public async Task OnGetAsync()
         {
-            Bishopric = await _context.Bishopric.ToListAsync();
+            Bishopric = await _context.Bishopric
+                .Include(c => c.Member)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

@@ -14,16 +14,14 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Bishopric.Name" class="control-label"></label>
-                @*<select asp-for="Bishopric.Role" class="form-control" asp-items="@Model.DepartmentNameSL">*@
-                <select asp-for="Bishopric.Name" class="form-control" asp-items="@Model.MemberNameSL">
+                <label asp-for="Bishopric.Member" class="control-label"></label>
+                <select asp-for="Bishopric.Member" class="form-control" asp-items="@Model.MemberNameSL">
                     <option value="">-- Select Member --</option>
                 </select>
-                <span asp-validation-for="Bishopric.Name" class="text-danger" />
+                <span asp-validation-for="Bishopric.Member" class="text-danger" />
             </div>
             <div class="form-group">
                 <label asp-for="Bishopric.Role" class="control-label"></label>
-                @*<select asp-for="Bishopric.Role" class="form-control" asp-items="@Model.DepartmentNameSL">*@
                 <select asp-for="Bishopric.Role" class="form-control" asp-items="@Model.RoleNameSL">
                     <option value="">-- Select Role --</option>
                 </select>

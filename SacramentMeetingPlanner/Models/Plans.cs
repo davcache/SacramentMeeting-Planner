@@ -9,9 +9,9 @@ namespace SacramentMeetingPlanner.Models
     {
         public int ID { get; set; }
         public DateTime Date { get; set; }
-        public Bishopric Conducting { get; set; }
-        public Members OpeningPrayer { get; set; }
-        public Songs OpeningSong { get; set; } 
+        public Bishopric Bishopric { get; set; }
+        public Members Member { get; set; }
+        public Songs Song { get; set; } 
         public Songs SacramentSong { get; set; }
 
         // no need for Songs? since objects are nullable by definition
@@ -21,5 +21,6 @@ namespace SacramentMeetingPlanner.Models
         public Members ClosingPrayer { get; set; }
 
         public ICollection<SpeakToPlan> Members { get; set; }
+        public ICollection<SongToPlan> Songs { get; set; }
     }
 }
