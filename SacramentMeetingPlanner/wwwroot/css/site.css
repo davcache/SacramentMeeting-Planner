@@ -5,7 +5,9 @@ body {
     padding-bottom: 20px;
     background-image: url(/images/lds_church_building.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     color: white;
+    min-height: 100vh;
 }
 
 /* Wrapping element */
