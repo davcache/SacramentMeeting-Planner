@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SacramentMeetingPlanner.Models;
+using SacramentMeetingPlanner.Data;
 
 namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
 {
@@ -20,7 +21,25 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
 
         public IActionResult OnGet()
         {
+            PopulateRoleMembersDownList(_context);
+            PopulateRoleDropDownList(_context);
             return Page();
+        }
+
+        public SelectList RoleNameSL { get; set; }
+        public void PopulateRoleDropDownList(PlannerContext _context)
+        {
+            Array roleQuery = Enum.GetValues(typeof(Role));
+            RoleNameSL = new SelectList(roleQuery);
+        }
+
+        public SelectList MemberNameSL { get; set; }
+        public void PopulateRoleMembersDownList(PlannerContext _context)
+        {
+            var roleQuery = from d in _context.Members
+                                   orderby d.Name // Sort by name.
+                                   select d.Name;
+            RoleNameSL = new SelectList(roleQuery);
         }
 
         [BindProperty]
