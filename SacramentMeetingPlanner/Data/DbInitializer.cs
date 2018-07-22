@@ -78,25 +78,25 @@ namespace SacramentMeetingPlanner.Data
             var bishopric = new Bishopric[]
             {
                 new Bishopric {
-                    Name = members.Single( s => s.Name == "Michael Jordan"),
+                    Member = members.Single( s => s.Name == "Michael Jordan"),
                     Role = Role.Bishop
                 },
                 new Bishopric {
-                    Name = members.Single( s => s.Name == "Gandhi"),
-                    Role = Role.Bishop
+                    Member = members.Single( s => s.Name == "Gandhi"),
+                    Role = Role.First_Counselor
                 },
                 new Bishopric {
-                    Name = members.Single( s => s.Name == "Donald Trump Jr."),
-                    Role = Role.Bishop
+                    Member = members.Single( s => s.Name == "Donald Trump Jr."),
+                    Role = Role.Second_Counselor
                 },
                 new Bishopric {
-                    Name = members.Single( s => s.Name == "Dick Van Dyke"),
+                    Member = members.Single( s => s.Name == "Dick Van Dyke"),
                     Role = Role.Bishop,
                     ReleasedFlag = true
                 },
                 new Bishopric {
-                    Name = members.Single( s => s.Name == "Benjamin Franklin"),
-                    Role = Role.Bishop,
+                    Member = members.Single( s => s.Name == "Benjamin Franklin"),
+                    Role = Role.First_Counselor,
                     ReleasedFlag = true
                 }
             };
