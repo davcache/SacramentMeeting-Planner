@@ -29,16 +29,21 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
         public SelectList RoleNameSL { get; set; }
         public void PopulateRoleDropDownList(PlannerContext _context)
         {
-            Array roleQuery = Enum.GetValues(typeof(Role));
-            RoleNameSL = new SelectList(roleQuery);
+            string[] names = Enum.GetNames(typeof(Role));
+            Role[] values = (Role[])Enum.GetValues(typeof(Role));
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = names[i].ToString().Replace("_", " ");
+            }
+            RoleNameSL = new SelectList(names);
         }
 
         public SelectList MemberNameSL { get; set; }
         public void PopulateRoleMembersDownList(PlannerContext _context)
         {
             var roleQuery = from d in _context.Members
-                                   orderby d.Name // Sort by name.
-                                   select d.Name;
+                            orderby d.Name // Sort by name.
+                            select d.Name;
             MemberNameSL = new SelectList(roleQuery);
         }
 
