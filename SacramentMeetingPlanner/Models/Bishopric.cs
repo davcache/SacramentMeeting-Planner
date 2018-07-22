@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,11 @@ namespace SacramentMeetingPlanner.Models
         public int ID { get; set; }
         public Members Name { get; set; }
         public Role Role { get; set; }
+
+        [Display(Name = "Released Flag")]
         public bool? ReleasedFlag { get; set; } = false;
-        public int? MemberID { get; set; }
+
+        [Display(Name = "Member ID")]
+        public Members Member { get; set; }
     }
 }

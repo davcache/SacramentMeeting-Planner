@@ -20,6 +20,6 @@ namespace SacramentMeetingPlanner.Models
 
         public Members ClosingPrayer { get; set; }
 
-        public ICollection<SpeakToPlan> Speakers { get; set; }
+        public ICollection<SpeakToPlan> Members { get; set; }
     }
 }

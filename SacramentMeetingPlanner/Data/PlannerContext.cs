@@ -25,7 +25,7 @@ namespace SacramentMeetingPlanner.Models
             modelBuilder.Entity<Bishopric>().ToTable("Bishopric");
             modelBuilder.Entity<Plans>().ToTable("Plans");
             modelBuilder.Entity<Songs>().ToTable("Songs");
-            modelBuilder.Entity<Members>().ToTable("Speakers");
+            modelBuilder.Entity<Members>().ToTable("Members");
             modelBuilder.Entity<SpeakToPlan>().ToTable("SpeakToPlan");
             modelBuilder.Entity<Subjects>().ToTable("Subjects");
 
