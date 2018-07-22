@@ -16,6 +16,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Plans[0].Date)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plans[0].Conducting)
+            </th>
+            <th>
+                Songs
+            </th>
+            <th>
+                Prayers
+            </th>
+            <th>
+                Speakers/Topics
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +36,26 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningSong)
+                <br />
+                @Html.DisplayFor(modelItem => item.SacramentSong)
+                <br />
+                @Html.DisplayFor(modelItem => item.OptIntermSong)
+                <br />
+                @Html.DisplayFor(modelItem => item.ClosingSong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningPrayer)
+                <br />
+                @Html.DisplayFor(modelItem => item.ClosingPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Members)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-<h4>Plans</h4>
+<h4>Sacrament Meeting Plan</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,6 +18,46 @@
                 <label asp-for="Plans.Date" class="control-label"></label>
                 <input asp-for="Plans.Date" class="form-control" />
                 <span asp-validation-for="Plans.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.Conducting" class="control-label"></label>
+                <input asp-for="Plans.Conducting" class="form-control" />
+                <span asp-validation-for="Plans.Conducting" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.OpeningSong" class="control-label"></label>
+                <input asp-for="Plans.OpeningSong" class="form-control" />
+                <span asp-validation-for="Plans.OpeningSong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.OpeningPrayer" class="control-label"></label>
+                <input asp-for="Plans.OpeningPrayer" class="form-control" />
+                <span asp-validation-for="Plans.OpeningPrayer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.SacramentSong" class="control-label"></label>
+                <input asp-for="Plans.SacramentSong" class="form-control" />
+                <span asp-validation-for="Plans.SacramentSong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.Members" class="control-label"></label>
+                <input asp-for="Plans.Members" class="form-control" />
+                <span asp-validation-for="Plans.Members" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.OptIntermSong" class="control-label"></label>
+                <input asp-for="Plans.OptIntermSong" class="form-control" />
+                <span asp-validation-for="Plans.OptIntermSong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.ClosingSong" class="control-label"></label>
+                <input asp-for="Plans.ClosingSong" class="form-control" />
+                <span asp-validation-for="Plans.ClosingSong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.ClosingPrayer" class="control-label"></label>
+                <input asp-for="Plans.ClosingPrayer" class="form-control" />
+                <span asp-validation-for="Plans.ClosingPrayer" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
