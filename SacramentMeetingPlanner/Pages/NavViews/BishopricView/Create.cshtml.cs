@@ -39,7 +39,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
             var roleQuery = from d in _context.Members
                                    orderby d.Name // Sort by name.
                                    select d.Name;
-            RoleNameSL = new SelectList(roleQuery);
+            MemberNameSL = new SelectList(roleQuery);
         }
 
         [BindProperty]
