@@ -22,7 +22,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
 
         public async Task OnGetAsync()
         {
-            Members = await _context.Members.ToListAsync();
+            Members = await _context.Member.ToListAsync();
         }
     }
 }

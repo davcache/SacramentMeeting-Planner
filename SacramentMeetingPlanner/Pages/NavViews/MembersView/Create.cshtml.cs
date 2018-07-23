@@ -33,7 +33,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
                 return Page();
             }
 
-            _context.Members.Add(Members);
+            _context.Member.Add(Members);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
