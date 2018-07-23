@@ -8,6 +8,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class SpeakAssignment
     {
+        [Key]
         [Display(Name = "Speaker Assignment ID")]
         public int SpeakerAssignmentID { get; set; }
 

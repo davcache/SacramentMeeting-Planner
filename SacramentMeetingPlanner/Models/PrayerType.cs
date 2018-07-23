@@ -8,6 +8,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class PrayerType
     {
+        [Key]
         [Display(Name = "Prayer Type ID ")]
         public int PrayerTypeID { get; set; }
 

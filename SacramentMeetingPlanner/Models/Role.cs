@@ -8,6 +8,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class Role
     {
+        [Key]
         [Display(Name = "Role ID")]
         public int RoleID { get; set; }
 

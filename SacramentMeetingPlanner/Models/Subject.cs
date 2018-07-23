@@ -9,6 +9,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class Subject
     {
+        [Key]
         [Display(Name = "Subject ID")]
         public int SubjectID { get; set; }
 

@@ -8,6 +8,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class Song
     {
+        [Key]
         [Display(Name = "Song ID")]
         public int SongID { get; set; }
 

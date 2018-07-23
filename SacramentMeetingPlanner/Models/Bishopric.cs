@@ -8,6 +8,7 @@ namespace SacramentMeetingPlanner.Models
 {
     public class Bishopric
     {
+        [Key]
         [Display(Name = "Bishopric ID")]
         public int BishopricID { get; set; }
 
