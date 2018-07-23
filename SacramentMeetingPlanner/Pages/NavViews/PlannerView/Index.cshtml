@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Plans[0].Date)
+                @Html.DisplayNameFor(model => model.Plans[0].PlanDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Plans[0].Conducting)
+                @Html.DisplayNameFor(model => model.Plans[0].Bishopric)
             </th>
             <th>
                 Songs
@@ -35,32 +35,39 @@
 @foreach (var item in Model.Plans) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.PlanDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conducting)
+                @Html.DisplayFor(modelItem => item.Bishopric)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningSong)
-                <br />
-                @Html.DisplayFor(modelItem => item.SacramentSong)
-                <br />
-                @Html.DisplayFor(modelItem => item.OptIntermSong)
-                <br />
-                @Html.DisplayFor(modelItem => item.ClosingSong)
+                @{
+                    foreach (var song in item.SongToPlan)
+                    {
+                        @song.SongType.SongTypeName @song.Song.SongNumber @:  @song.Song.SongName <br />
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                <br />
-                @Html.DisplayFor(modelItem => item.ClosingPrayer)
+                @{
+                    foreach (var prayer in item.PrayerToPlan)
+                    {
+                        @prayer.PrayerType.PrayerTypeName @:  @prayer.Member <br />
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Members)
+                @{
+                    foreach (var speaker in item.SpeakToPlan)
+                    {
+                        @speaker.SpeakerPlacement @speaker.Member.MemberName @:  @speaker.Subject.SubjectName <br />
+                    }
+                }
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.PlansID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PlansID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PlansID">Delete</a>
             </td>
         </tr>
 }
