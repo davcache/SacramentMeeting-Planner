@@ -24,25 +24,17 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
         }
 
         public SelectList RoleNameSL { get; set; }
+        public string RoleName { get; set; }
         public void PopulateRoleDropDownList(PlannerContext _context)
         {
-            string[] namesValue = Enum.GetNames(typeof(Role));
-            string[] namesText = Enum.GetNames(typeof(Role));
-            Role[] values = (Role[])Enum.GetValues(typeof(Role));
-            for (int i = 0; i < namesText.Length; i++)
-            {
-                namesText[i] = namesText[i].ToString().Replace("_", " ");
-            }
-
-            string result1 = string.Join(",", namesValue);
-            string result2 = string.Join(",", namesText);
-            Dictionary<string, string> selectObject = new Dictionary<string, string>();
-            selectObject.Add(result1, result2);
-
-            RoleNameSL = new SelectList(selectObject, "result1", "result2");
+            var roleQuery = from d in _context.Role
+                            orderby d.RoleTypeName // Sort by name.
+                            select d.RoleTypeName;
+            MemberNameSL = new SelectList(roleQuery, "RoleID", "RoleTypeName");
         }
 
         public SelectList SongNameSL { get; set; }
+        public string SongName { get; set; }
         public void PopulateSongNamesDownList(PlannerContext _context)
         {
             var songQuery = from d in _context.Song
@@ -52,12 +44,13 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
         }
 
         public SelectList MemberNameSL { get; set; }
+        public string MemberName { get; set; }
         public void PopulateRoleMembersDownList(PlannerContext _context)
         {
-            var roleQuery = from d in _context.Member
+            var memberRoleQuery = from d in _context.Member
                             orderby d.MemberName // Sort by name.
                             select d.MemberName;
-            MemberNameSL = new SelectList(roleQuery, "MemberID", "MemberName");
+            MemberNameSL = new SelectList(memberRoleQuery, "MemberID", "MemberName");
         }
 
         [BindProperty]
