@@ -19,6 +19,8 @@ namespace SacramentMeetingPlanner.Models
         public DateTime PlanDate { get; set; }
 
         [Display(Name = "Conducting")]
+        public int BishopricID { get; set; }
+
         public Bishopric Bishopric { get; set; }
 
         [Display(Name = "Prayers")]

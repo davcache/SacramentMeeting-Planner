@@ -9,12 +9,19 @@ namespace SacramentMeetingPlanner.Models
     public class PrayerToPlan
     {
         [Key]
-        public int ID { get; set; }
+        public int PrayerToPlanID { get; set; }
 
         [Display(Name = "Plan")]
-        public Plans Plans { get; set; }
+        public int? PlansID { get; set; }
 
         [Display(Name = "Prayer Type")]
-        public Prayer Prayer { get; set; }
+        public int PrayerTypeID { get; set; }
+
+        [Display(Name = "Member Name")]
+        public int MemberID { get; set; }
+
+        public Plans Plans { get; set; }
+        public PrayerType PrayerType { get; set; }
+        public Member Member { get; set; }
     }
 }

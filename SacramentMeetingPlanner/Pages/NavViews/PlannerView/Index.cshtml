@@ -52,7 +52,7 @@
                 @{
                     foreach (var prayer in item.PrayerToPlan)
                     {
-                        @prayer.Prayer.PrayerType @:  @prayer.Prayer.Member <br />
+                        @prayer.PrayerType.PrayerTypeName @:  @prayer.Member.MemberName <br />
                     }
                 }
             </td>

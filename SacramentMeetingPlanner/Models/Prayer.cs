@@ -13,9 +13,13 @@ namespace SacramentMeetingPlanner.Models
         public int PrayerID { get; set; }
 
         [Display(Name = "Prayer Type")]
+        public int PrayerTypeID { get; set; }
+
         public PrayerType PrayerType { get; set; }
 
         [Display(Name = "Member")]
+        public int MemberID { get; set; }
+
         public Member Member { get; set; }
     }
 }

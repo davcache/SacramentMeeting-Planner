@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using SacramentMeetingPlanner.Models;
 
 namespace SacramentMeetingPlanner.Data
@@ -12,7 +10,7 @@ namespace SacramentMeetingPlanner.Data
         {
             //context.Database.EnsureCreated();
 
-            // Look for any subjects.
+            // Look for any roles.
             if (context.Role.Any())
             {
                 return;   // DB has been seeded
@@ -32,9 +30,9 @@ namespace SacramentMeetingPlanner.Data
                 }
             };
 
-            foreach (Role role in roles)
+            foreach (Role r in roles)
             {
-                context.Role.Add(role);
+                context.Role.Add(r);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -107,9 +105,9 @@ namespace SacramentMeetingPlanner.Data
                 }
             };
 
-            foreach (PrayerType prayerType in prayerTypes)
+            foreach (PrayerType pt in prayerTypes)
             {
-                context.PrayerType.Add(prayerType);
+                context.PrayerType.Add(pt);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -159,9 +157,9 @@ namespace SacramentMeetingPlanner.Data
                 }
             };
 
-            foreach (Song song in songs)
+            foreach (Song s in songs)
             {
-                context.Song.Add(song);
+                context.Song.Add(s);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -183,9 +181,9 @@ namespace SacramentMeetingPlanner.Data
                 }
             };
 
-            foreach (SongType songType in songTypes)
+            foreach (SongType st in songTypes)
             {
-                context.SongType.Add(songType);
+                context.SongType.Add(st);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -225,9 +223,9 @@ namespace SacramentMeetingPlanner.Data
                 }
             };
 
-            foreach (Subject subject in subjects)
+            foreach (Subject s in subjects)
             {
-                context.Subject.Add(subject);
+                context.Subject.Add(s);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -236,32 +234,32 @@ namespace SacramentMeetingPlanner.Data
             var bishopric = new Bishopric[]
             {
                 new Bishopric {
-                    Role = roles.Single( s => s.RoleTypeName == "Bishop"),
-                    Member = members.Single( s => s.MemberName == "Michael Jordan")
+                    RoleID = roles.Single( s => s.RoleTypeName == "Bishop").RoleID,
+                    MemberID = members.Single( s => s.MemberName == "Michael Jordan").MemberID
                 },
                 new Bishopric {
-                    Role = roles.Single( s => s.RoleTypeName == "First Counselor"),
-                    Member = members.Single( s => s.MemberName == "Gandhi")
+                    RoleID = roles.Single( s => s.RoleTypeName == "First Counselor").RoleID,
+                    MemberID = members.Single( s => s.MemberName == "Gandhi").MemberID
                 },
                 new Bishopric {
-                    Role = roles.Single( s => s.RoleTypeName == "Second Counselor"),
-                    Member = members.Single( s => s.MemberName == "Donald Trump Jr.")
+                    RoleID = roles.Single( s => s.RoleTypeName == "Second Counselor").RoleID,
+                    MemberID = members.Single( s => s.MemberName == "Donald Trump Jr.").MemberID
                 },
                 new Bishopric {
-                    Role = roles.Single( s => s.RoleTypeName == "Bishop"),
-                    Member = members.Single( s => s.MemberName == "Dick Van Dyke"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "Bishop").RoleID,
+                    MemberID = members.Single( s => s.MemberName == "Dick Van Dyke").MemberID,
                     ReleasedFlag = true
                 },
                 new Bishopric {
-                    Role = roles.Single( s => s.RoleTypeName == "First Counselor"),
-                    Member = members.Single( s => s.MemberName == "Benjamin Franklin"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "First Counselor").RoleID,
+                    MemberID = members.Single( s => s.MemberName == "Benjamin Franklin").MemberID,
                     ReleasedFlag = true
                 }
             };
 
-            foreach (Bishopric bishopricPeeps in bishopric)
+            foreach (Bishopric b in bishopric)
             {
-                context.Bishopric.Add(bishopricPeeps);
+                context.Bishopric.Add(b);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -271,29 +269,29 @@ namespace SacramentMeetingPlanner.Data
             {
                 new Plans {
                     PlanDate = DateTime.Parse("2018-22-07"),
-                    Bishopric = bishopric.Single( s => s.BishopricID == 1)
+                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "First Counselor").BishopricID
                 },
                 new Plans {
                     PlanDate = DateTime.Parse("2018-15-07"),
-                    Bishopric = bishopric.Single( s => s.BishopricID == 2)
+                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
                 },
                 new Plans {
                     PlanDate = DateTime.Parse("2018-08-07"),
-                    Bishopric = bishopric.Single( s => s.BishopricID == 3)
+                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Second Counselor").BishopricID
                 },
                 new Plans {
                     PlanDate = DateTime.Parse("2018-01-07"),
-                    Bishopric = bishopric.Single( s => s.BishopricID == 4)
+                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
                 },
                 new Plans {
                     PlanDate = DateTime.Parse("2018-24-06"),
-                    Bishopric = bishopric.Single( s => s.BishopricID == 5)
+                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
                 },
             };
 
-            foreach (Plans plan in plans)
+            foreach (Plans p in plans)
             {
-                context.Plans.Add(plan);
+                context.Plans.Add(p);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -302,50 +300,50 @@ namespace SacramentMeetingPlanner.Data
             var prayers = new Prayer[]
             {
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer"),
-                    Member = members.Single( s => s.MemberName == "Michael Jordan")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Michael Jordan").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer"),
-                    Member = members.Single( s => s.MemberName == "Gandhi")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Gandhi").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer"),
-                    Member = members.Single( s => s.MemberName == "Donald Trump Jr.")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Donald Trump Jr.").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer"),
-                    Member = members.Single( s => s.MemberName == "Dick Van Dyke")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Dick Van Dyke").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer"),
-                    Member = members.Single( s => s.MemberName == "Benjamin Franklin")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Benjamin Franklin").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer"),
-                    Member = members.Single( s => s.MemberName == "Winston Churchill")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Winston Churchill").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer"),
-                    Member = members.Single( s => s.MemberName == "Bill Gates")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Bill Gates").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer"),
-                    Member = members.Single( s => s.MemberName == "Steve Jobs")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Steve Jobs").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer"),
-                    Member = members.Single( s => s.MemberName == "Elvis Presley")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Elvis Presley").MemberID
                 },
                 new Prayer {
-                    PrayerType = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer"),
-                    Member = members.Single( s => s.MemberName == "Mother Teresa")
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Mother Teresa").MemberID
                 }
             };
 
-            foreach (Prayer prayer in prayers)
+            foreach (Prayer p in prayers)
             {
-                context.Prayer.Add(prayer);
+                context.Prayer.Add(p);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -354,50 +352,60 @@ namespace SacramentMeetingPlanner.Data
             var prayerToPlans = new PrayerToPlan[]
             {
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    Prayer = prayers.Single( s => s.PrayerID == 1)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Michael Jordan").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    Prayer = prayers.Single( s => s.PrayerID == 2)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Gandhi").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    Prayer = prayers.Single( s => s.PrayerID == 3)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Donald Trump Jr.").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    Prayer = prayers.Single( s => s.PrayerID == 4)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Dick Van Dyke").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    Prayer = prayers.Single( s => s.PrayerID == 5)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Benjamin Franklin").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    Prayer = prayers.Single( s => s.PrayerID == 6)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Winston Churchill").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    Prayer = prayers.Single( s => s.PrayerID == 7)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Bill Gates").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    Prayer = prayers.Single( s => s.PrayerID == 8)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Steve Jobs").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    Prayer = prayers.Single( s => s.PrayerID == 9)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Closing Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Elvis Presley").MemberID
                 },
                 new PrayerToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    Prayer = prayers.Single( s => s.PrayerID == 10)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    PrayerTypeID = prayerTypes.Single( s => s.PrayerTypeName == "Opening Prayer").PrayerTypeID,
+                    MemberID = members.Single( s => s.MemberName == "Mother Teresa").MemberID
                 }
             };
 
-            foreach (PrayerToPlan prayerToPlan in prayerToPlans)
+            foreach (PrayerToPlan ptp in prayerToPlans)
             {
-                context.PrayerToPlan.Add(prayerToPlan);
+                context.PrayerToPlan.Add(ptp);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -412,82 +420,82 @@ namespace SacramentMeetingPlanner.Data
             var songAssignments = new SongAssignment[]
             {
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Opening Song")
+                    SongID = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Opening Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "While of These Emblems We Partake"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Sacrament Song")
+                    SongID = songs.Single( s => s.SongName == "While of These Emblems We Partake").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Sacrament Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "He Is Risen!"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Intermediate Song")
+                    SongID = songs.Single( s => s.SongName == "He Is Risen!").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Intermediate Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Closing Song")
+                    SongID = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Closing Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Opening Song")
+                    SongID = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Opening Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "While of These Emblems We Partake"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Sacrament Song")
+                    SongID = songs.Single( s => s.SongName == "While of These Emblems We Partake").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Sacrament Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Closing Song")
+                    SongID = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Closing Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Opening Song")
+                    SongID = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Opening Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "Reverently and Meekly Now"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Sacrament Song")
+                    SongID = songs.Single( s => s.SongName == "Reverently and Meekly Now").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Sacrament Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "He Is Risen!"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Intermediate Song")
+                    SongID = songs.Single( s => s.SongName == "He Is Risen!").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Intermediate Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "Hope of Israel"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Closing Song")
+                    SongID = songs.Single( s => s.SongName == "Hope of Israel").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Closing Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Opening Song")
+                    SongID = songs.Single( s => s.SongName == "I Saw a Mighty Angel Fly").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Opening Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "While of These Emblems We Partake"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Sacrament Song")
+                    SongID = songs.Single( s => s.SongName == "While of These Emblems We Partake").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Sacrament Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Closing Song")
+                    SongID = songs.Single( s => s.SongName == "We Thank Thee, O God, for a Prophet").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Closing Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "Arise, O God, and Shine"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Opening Song")
+                    SongID = songs.Single( s => s.SongName == "Arise, O God, and Shine").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Opening Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "While of These Emblems We Partake"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Sacrament Song")
+                    SongID = songs.Single( s => s.SongName == "While of These Emblems We Partake").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Sacrament Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "Put Your Shoulder to the Wheel"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Intermediate Song")
+                    SongID = songs.Single( s => s.SongName == "Put Your Shoulder to the Wheel").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Intermediate Song").SongTypeID
                 },
                 new SongAssignment {
-                    Song = songs.Single( s => s.SongName == "Hope of Israel"),
-                    SongType = songTypes.Single( s => s.SongTypeName == "Closing Song")
+                    SongID = songs.Single( s => s.SongName == "Hope of Israel").SongID,
+                    SongTypeID = songTypes.Single( s => s.SongTypeName == "Closing Song").SongTypeID
                 }
             };
 
-            foreach (SongAssignment songAssignment in songAssignments)
+            foreach (SongAssignment sa in songAssignments)
             {
-                context.SongAssignment.Add(songAssignment);
+                context.SongAssignment.Add(sa);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -496,83 +504,83 @@ namespace SacramentMeetingPlanner.Data
             var songToPlans = new SongToPlan[]
             {
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 1)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 1).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 2)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 2).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 3)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 3).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 4)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 4).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 5)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 5).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 6)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 6).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 7)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 7).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 8)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 8).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 9)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 9).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 10)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 10).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 11)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 11).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 12)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 12).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 13)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 13).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 14)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 14).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 15)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 15).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 16)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 16).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 17)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 17).SongAssignmentID
                 },
                 new SongToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SongAssignment = songAssignments.Single( s => s.SongAssignmentID == 18)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SongAssignmentID = songAssignments.Single( s => s.SongAssignmentID == 18).SongAssignmentID
                 },
 
             };
 
-            foreach (SongToPlan songToPlan in songToPlans)
+            foreach (SongToPlan stp in songToPlans)
             {
-                context.SongToPlan.Add(songToPlan);
+                context.SongToPlan.Add(stp);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -581,101 +589,100 @@ namespace SacramentMeetingPlanner.Data
             var speakAssignments = new SpeakAssignment[]
             {
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Dick Van Dyke"),
-                    Subject = subjects.Single( s => s.SubjectName == "Hope"),
+                    MemberID = members.Single( s => s.MemberName == "Dick Van Dyke").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Hope").SubjectID,
                     SpeakerPlacement = 1
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Benjamin Franklin"),
-                    Subject = subjects.Single( s => s.SubjectName == "Repentance"),
+                    MemberID = members.Single( s => s.MemberName == "Benjamin Franklin").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Repentance").SubjectID,
                     SpeakerPlacement = 2
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Winston Churchill"),
-                    Subject = subjects.Single( s => s.SubjectName == "Love"),
+                    MemberID = members.Single( s => s.MemberName == "Winston Churchill").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Love").SubjectID,
                     SpeakerPlacement = 3
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Bill Gates"),
-                    Subject = subjects.Single( s => s.SubjectName == "Ministering"),
+                    MemberID = members.Single( s => s.MemberName == "Bill Gates").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Ministering").SubjectID,
                     SpeakerPlacement = 4
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Steve Jobs"),
-                    Subject = subjects.Single( s => s.SubjectName == "Family Home Evening"),
+                    MemberID = members.Single( s => s.MemberName == "Steve Jobs").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Family Home Evening").SubjectID,
                     SpeakerPlacement = 1
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
-                    Subject = subjects.Single( s => s.SubjectName == "Tithing"),
+                    MemberID = members.Single( s => s.MemberName == "Elvis Presley").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Tithing").SubjectID,
                     SpeakerPlacement = 2
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Mother Teresa"),
-                    Subject = subjects.Single( s => s.SubjectName == "The Atonement"),
+                    MemberID = members.Single( s => s.MemberName == "Mother Teresa").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "The Atonement").SubjectID,
                     SpeakerPlacement = 3
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Martin Luther King"),
-                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society"),
+                    MemberID = members.Single( s => s.MemberName == "Martin Luther King").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "The Relief Society").SubjectID,
                     SpeakerPlacement = 1
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "JFK"),
-                    Subject = subjects.Single( s => s.SubjectName == "The Priesthood"),
+                    MemberID = members.Single( s => s.MemberName == "JFK").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "The Priesthood").SubjectID,
                     SpeakerPlacement = 2
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Abraham Lincoln"),
-                    Subject = subjects.Single( s => s.SubjectName == "Magnifying Callings"),
+                    MemberID = members.Single( s => s.MemberName == "Abraham Lincoln").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Magnifying Callings").SubjectID,
                     SpeakerPlacement = 3
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Leonardo da Vinci"),
-                    Subject = subjects.Single( s => s.SubjectName == "Hope"),
+                    MemberID = members.Single( s => s.MemberName == "Leonardo da Vinci").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Hope").SubjectID,
                     SpeakerPlacement = 4
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Tom Cruise"),
-                    Subject = subjects.Single( s => s.SubjectName == "Repentance"),
+                    MemberID = members.Single( s => s.MemberName == "Tom Cruise").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Repentance").SubjectID,
                     SpeakerPlacement = 1
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Dick Van Dyke"),
-                    Subject = subjects.Single( s => s.SubjectName == "Love"),
+                    MemberID = members.Single( s => s.MemberName == "Dick Van Dyke").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Love").SubjectID,
                     SpeakerPlacement = 2
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Benjamin Franklin"),
-                    Subject = subjects.Single( s => s.SubjectName == "Ministering"),
+                    MemberID = members.Single( s => s.MemberName == "Benjamin Franklin").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Ministering").SubjectID,
                     SpeakerPlacement = 3
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Winston Churchill"),
-                    Subject = subjects.Single( s => s.SubjectName == "Family Home Evening"),
+                    MemberID = members.Single( s => s.MemberName == "Winston Churchill").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Family Home Evening").SubjectID,
                     SpeakerPlacement = 1
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Bill Gates"),
-                    Subject = subjects.Single( s => s.SubjectName == "Tithing"),
+                    MemberID = members.Single( s => s.MemberName == "Bill Gates").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "Tithing").SubjectID,
                     SpeakerPlacement = 2
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Steve Jobs"),
-                    Subject = subjects.Single( s => s.SubjectName == "The Atonement"),
+                    MemberID = members.Single( s => s.MemberName == "Steve Jobs").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "The Atonement").SubjectID,
                     SpeakerPlacement = 3
                 },
                 new SpeakAssignment {
-                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
-                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society"),
+                    MemberID = members.Single( s => s.MemberName == "Elvis Presley").MemberID,
+                    SubjectID = subjects.Single( s => s.SubjectName == "The Relief Society").SubjectID,
                     SpeakerPlacement = 4
-
                 }
             };
 
-            foreach (SpeakAssignment speakAssignment in speakAssignments)
+            foreach (SpeakAssignment sa in speakAssignments)
             {
-                context.SpeakAssignment.Add(speakAssignment);
+                context.SpeakAssignment.Add(sa);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------
@@ -684,82 +691,82 @@ namespace SacramentMeetingPlanner.Data
             var speakToPlans = new SpeakToPlan[]
             {
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 1)            
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 1).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 2)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 2).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 3)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 3).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 1),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 4)
+                    PlansID = plans.Single( s => s.PlansID == 1).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 4).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 5)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 5).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 6)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 6).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 2),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 7)
+                    PlansID = plans.Single( s => s.PlansID == 2).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 7).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 8)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 8).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 9)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 9).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 10)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 10).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 3),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 11)
+                    PlansID = plans.Single( s => s.PlansID == 3).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 11).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 12)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 12).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 13)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 13).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 4),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 14)
+                    PlansID = plans.Single( s => s.PlansID == 4).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 14).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 15)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 15).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 16)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 16).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 17)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 17).SpeakAssignmentID
                 },
                 new SpeakToPlan {
-                    Plans = plans.Single( s => s.PlansID == 5),
-                    SpeakAssignment = speakAssignments.Single( s => s.SpeakerAssignmentID == 18)
+                    PlansID = plans.Single( s => s.PlansID == 5).PlansID,
+                    SpeakAssignmentID = speakAssignments.Single( s => s.SpeakAssignmentID == 18).SpeakAssignmentID
                 }
             };
 
-            foreach (SpeakToPlan speakToPlan in speakToPlans)
+            foreach (SpeakToPlan stp in speakToPlans)
             {
-                context.SpeakToPlan.Add(speakToPlan);
+                context.SpeakToPlan.Add(stp);
             }
             context.SaveChanges();
             // ----------------------------------------------------------------------------

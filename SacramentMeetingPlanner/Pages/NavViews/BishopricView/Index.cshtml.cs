@@ -18,12 +18,17 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
             _context = context;
         }
 
-        public IList<Bishopric> Bishopric { get;set; }
+        public IList<Bishopric> Bishopric { get; set; }
+        public IList<Bishopric> Role { get; set; }
 
         public async Task OnGetAsync()
         {
             Bishopric = await _context.Bishopric
                 .Include(c => c.Member)
+                .AsNoTracking()
+                .ToListAsync();
+            Role = await _context.Bishopric
+                .Include(r => r.Role)
                 .AsNoTracking()
                 .ToListAsync();
         }

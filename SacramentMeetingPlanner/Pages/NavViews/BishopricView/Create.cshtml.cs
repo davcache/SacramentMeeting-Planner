@@ -22,27 +22,27 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
 
         public IActionResult OnGet()
         {
-            PopulateRoleMembersDownList(_context);
+            PopulateRoleMembersDropDownList(_context);
             PopulateRoleDropDownList(_context);
             return Page();
         }
 
-        public SelectList RoleNameSL { get; set; }
-        public void PopulateRoleDropDownList(PlannerContext _context)
+        public SelectList MemberNameSL { get; set; }
+        public void PopulateRoleMembersDropDownList(PlannerContext _context, object selectedMember = null)
         {
-            var roleQuery = from d in _context.Role
-                            orderby d.RoleTypeName // Sort by RoleTypeName.
-                            select d.RoleTypeName;
-            RoleNameSL = new SelectList(roleQuery.AsNoTracking(), "RoleID", "RoleTypeName");
+            var memberQuery = from m in _context.Member
+                              orderby m.MemberName // Sort by MemberName.
+                              select m.MemberName;
+            MemberNameSL = new SelectList(memberQuery.AsNoTracking(), "MemberID", "MemberName", selectedMember);
         }
 
-        public SelectList MemberNameSL { get; set; }
-        public void PopulateRoleMembersDownList(PlannerContext _context)
+        public SelectList RoleNameSL { get; set; }
+        public void PopulateRoleDropDownList(PlannerContext _context, object selectedRole = null)
         {
-            var memberQuery = from d in _context.Member
-                            orderby d.MemberName // Sort by name.
-                            select d.MemberName;
-            MemberNameSL = new SelectList(memberQuery.AsNoTracking(), "MemberID", "MemberName");
+            var roleQuery = from r in _context.Role
+                            orderby r.RoleTypeName // Sort by RoleTypeName.
+                            select r.RoleTypeName;
+            RoleNameSL = new SelectList(roleQuery.AsNoTracking(), "RoleID", "RoleTypeName", selectedRole);
         }
 
         [BindProperty]
@@ -55,9 +55,21 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
                 return Page();
             }
 
-            _context.Bishopric.Add(Bishopric);
-            await _context.SaveChangesAsync();
+            var emptyBishopric = new Bishopric();
 
+            if (await TryUpdateModelAsync<Bishopric>(
+                emptyBishopric,
+                "bishopric",
+                b => b.MemberID, b => b.RoleID, b => b.ReleasedFlag))
+            {
+                _context.Bishopric.Add(emptyBishopric);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+
+            // Select MemberID and RoleID if TryUpdateModelAsync fails.
+            PopulateRoleMembersDropDownList(_context, emptyBishopric.MemberID);
+            PopulateRoleDropDownList(_context, emptyBishopric.RoleID);
             return RedirectToPage("./Index");
         }
     }

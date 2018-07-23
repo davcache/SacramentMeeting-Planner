@@ -29,12 +29,16 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
                 return NotFound();
             }
 
-            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.BishopricID == id);
+            Bishopric = await _context.Bishopric
+                .Include(m => m.Member).ThenInclude(m => m.MemberName)
+                .Include(m => m.Role).ThenInclude(m => m.RoleTypeName)
+                .FirstOrDefaultAsync(m => m.BishopricID == id);
 
             if (Bishopric == null)
             {
                 return NotFound();
             }
+            //PopulateRoleDropDownList(_context);
             return Page();
         }
 

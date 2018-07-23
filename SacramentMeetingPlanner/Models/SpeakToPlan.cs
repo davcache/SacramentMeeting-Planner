@@ -9,12 +9,15 @@ namespace SacramentMeetingPlanner.Models
     public class SpeakToPlan
     {
         [Key]
-        public int ID { get; set; }
+        public int SpeakToPlanID { get; set; }
 
         [Display(Name = "Plan")]
-        public Plans Plans { get; set; }
+        public int PlansID { get; set; }
 
         [Display(Name = "Speaker Assignment")]
+        public int? SpeakAssignmentID { get; set; }
+
+        public Plans Plans { get; set; }
         public SpeakAssignment SpeakAssignment { get; set; }
     }
 }

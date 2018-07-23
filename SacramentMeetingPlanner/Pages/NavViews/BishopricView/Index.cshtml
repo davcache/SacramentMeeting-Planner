@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Bishopric[0].Member.MemberName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bishopric[0].Role)
+                @Html.DisplayNameFor(model => model.Role[0].Role.RoleTypeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bishopric[0].ReleasedFlag)
@@ -26,21 +26,21 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Bishopric) {
+    @for (var i = 0; i < Model.Bishopric.Count; i++) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Member.MemberName)
+                @Html.DisplayFor(modelItem => Model.Bishopric[i].Member.MemberName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @Html.DisplayFor(modelItem => Model.Role[i].Role.RoleTypeName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReleasedFlag)
+                @Html.DisplayFor(modelItem => Model.Bishopric[i].ReleasedFlag)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.BishopricID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BishopricID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BishopricID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@Model.Bishopric[i].BishopricID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@Model.Bishopric[i].BishopricID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@Model.Bishopric[i].BishopricID">Delete</a>
             </td>
         </tr>
     }

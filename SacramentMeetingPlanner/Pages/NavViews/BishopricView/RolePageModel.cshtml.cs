@@ -13,10 +13,15 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
     public class RolePageModel : PageModel
     {
         public SelectList RoleNameSL { get; set; }
-        public void PopulateRoleDropDownList(PlannerContext _context)
+
+        public void PopulateRoleDropDownList(PlannerContext _context, object selectedRole = null)
         {
-            Array roleQuery = Enum.GetValues(typeof(Role));
-            RoleNameSL = new SelectList(roleQuery);
+            var rolesQuery = from r in _context.Role
+                             orderby r.RoleTypeName // Sort by name.
+                             select r;
+
+            RoleNameSL = new SelectList(rolesQuery.AsNoTracking(),
+                    "RoleID", "RoleTypeName", selectedRole);
         }
     }
 }

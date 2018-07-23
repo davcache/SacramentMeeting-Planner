@@ -12,7 +12,7 @@ namespace SacramentMeetingPlanner.Models
         [Display(Name = "Role ID")]
         public int RoleID { get; set; }
 
-        [Display(Name = "Role Type")]
+        [Display(Name = "Role")]
         public string RoleTypeName { get; set; }
     }
 }

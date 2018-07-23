@@ -10,7 +10,7 @@ using SacramentMeetingPlanner.Models;
 namespace SacramentMeetingPlanner.Migrations
 {
     [DbContext(typeof(PlannerContext))]
-    [Migration("20180723042758_InitialCreate")]
+    [Migration("20180723182144_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace SacramentMeetingPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MemberID");
+                    b.Property<int>("MemberID");
 
                     b.Property<bool>("ReleasedFlag");
 
-                    b.Property<int?>("RoleID");
+                    b.Property<int>("RoleID");
 
                     b.HasKey("BishopricID");
 
@@ -61,7 +61,7 @@ namespace SacramentMeetingPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BishopricID");
+                    b.Property<int>("BishopricID");
 
                     b.Property<DateTime>("PlanDate");
 
@@ -78,9 +78,9 @@ namespace SacramentMeetingPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MemberID");
+                    b.Property<int>("MemberID");
 
-                    b.Property<int?>("PrayerTypeID");
+                    b.Property<int>("PrayerTypeID");
 
                     b.HasKey("PrayerID");
 
@@ -93,19 +93,23 @@ namespace SacramentMeetingPlanner.Migrations
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.PrayerToPlan", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("PrayerToPlanID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("MemberID");
+
                     b.Property<int?>("PlansID");
 
-                    b.Property<int?>("PrayerID");
+                    b.Property<int>("PrayerTypeID");
 
-                    b.HasKey("ID");
+                    b.HasKey("PrayerToPlanID");
+
+                    b.HasIndex("MemberID");
 
                     b.HasIndex("PlansID");
 
-                    b.HasIndex("PrayerID");
+                    b.HasIndex("PrayerTypeID");
 
                     b.ToTable("PrayerToPlan");
                 });
@@ -157,9 +161,9 @@ namespace SacramentMeetingPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("SongID");
+                    b.Property<int>("SongID");
 
-                    b.Property<int?>("SongTypeID");
+                    b.Property<int>("SongTypeID");
 
                     b.HasKey("SongAssignmentID");
 
@@ -172,15 +176,15 @@ namespace SacramentMeetingPlanner.Migrations
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SongToPlan", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("SongToPlanID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlansID");
+                    b.Property<int>("PlansID");
 
-                    b.Property<int?>("SongAssignmentID");
+                    b.Property<int>("SongAssignmentID");
 
-                    b.HasKey("ID");
+                    b.HasKey("SongToPlanID");
 
                     b.HasIndex("PlansID");
 
@@ -204,17 +208,17 @@ namespace SacramentMeetingPlanner.Migrations
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SpeakAssignment", b =>
                 {
-                    b.Property<int>("SpeakerAssignmentID")
+                    b.Property<int>("SpeakAssignmentID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MemberID");
+                    b.Property<int>("MemberID");
 
                     b.Property<int>("SpeakerPlacement");
 
-                    b.Property<int?>("SubjectID");
+                    b.Property<int>("SubjectID");
 
-                    b.HasKey("SpeakerAssignmentID");
+                    b.HasKey("SpeakAssignmentID");
 
                     b.HasIndex("MemberID");
 
@@ -225,19 +229,19 @@ namespace SacramentMeetingPlanner.Migrations
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SpeakToPlan", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("SpeakToPlanID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlansID");
+                    b.Property<int>("PlansID");
 
-                    b.Property<int?>("SpeakAssignmentSpeakerAssignmentID");
+                    b.Property<int?>("SpeakAssignmentID");
 
-                    b.HasKey("ID");
+                    b.HasKey("SpeakToPlanID");
 
                     b.HasIndex("PlansID");
 
-                    b.HasIndex("SpeakAssignmentSpeakerAssignmentID");
+                    b.HasIndex("SpeakAssignmentID");
 
                     b.ToTable("SpeakToPlan");
                 });
@@ -259,84 +263,102 @@ namespace SacramentMeetingPlanner.Migrations
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberID");
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleID");
+                        .HasForeignKey("RoleID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.Plans", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Bishopric", "Bishopric")
                         .WithMany()
-                        .HasForeignKey("BishopricID");
+                        .HasForeignKey("BishopricID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.Prayer", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberID");
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.PrayerType", "PrayerType")
                         .WithMany()
-                        .HasForeignKey("PrayerTypeID");
+                        .HasForeignKey("PrayerTypeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.PrayerToPlan", b =>
                 {
+                    b.HasOne("SacramentMeetingPlanner.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SacramentMeetingPlanner.Models.Plans", "Plans")
                         .WithMany("PrayerToPlan")
                         .HasForeignKey("PlansID");
 
-                    b.HasOne("SacramentMeetingPlanner.Models.Prayer", "Prayer")
+                    b.HasOne("SacramentMeetingPlanner.Models.PrayerType", "PrayerType")
                         .WithMany()
-                        .HasForeignKey("PrayerID");
+                        .HasForeignKey("PrayerTypeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SongAssignment", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("SongID");
+                        .HasForeignKey("SongID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.SongType", "SongType")
                         .WithMany()
-                        .HasForeignKey("SongTypeID");
+                        .HasForeignKey("SongTypeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SongToPlan", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Plans", "Plans")
                         .WithMany("SongToPlan")
-                        .HasForeignKey("PlansID");
+                        .HasForeignKey("PlansID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.SongAssignment", "SongAssignment")
                         .WithMany()
-                        .HasForeignKey("SongAssignmentID");
+                        .HasForeignKey("SongAssignmentID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SpeakAssignment", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberID");
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectID");
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.SpeakToPlan", b =>
                 {
                     b.HasOne("SacramentMeetingPlanner.Models.Plans", "Plans")
                         .WithMany("SpeakToPlan")
-                        .HasForeignKey("PlansID");
+                        .HasForeignKey("PlansID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.SpeakAssignment", "SpeakAssignment")
                         .WithMany()
-                        .HasForeignKey("SpeakAssignmentSpeakerAssignmentID");
+                        .HasForeignKey("SpeakAssignmentID");
                 });
 #pragma warning restore 612, 618
         }
