@@ -14,7 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Bishopric.BishopricID" />
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Bishopric.Member.MemberName" class="control-label"></label>
                 <select asp-for="Bishopric.Member.MemberName" class="form-control"></select>
                 <span asp-validation-for="Bishopric.Member.MemberName" class="text-danger"></span>
@@ -23,6 +23,20 @@
                 <label asp-for="Bishopric.Role.RoleTypeName" class="control-label"></label>
                 <select asp-for="Bishopric.Role.RoleTypeName" class="form-control"></select>
                 <span asp-validation-for="Bishopric.Role.RoleTypeName" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Bishopric.Member" class="control-label"></label>
+                <select asp-for="Bishopric.MemberID" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Bishopric.MemberID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Bishopric.Role" class="control-label"></label>
+                <select asp-for="Bishopric.RoleID" class="form-control" asp-items="@Model.RoleNameSL">
+                    <option value="">-- Select Role --</option>
+                </select>
+                <span asp-validation-for="Bishopric.RoleID" class="text-danger" />
             </div>
             <div class="form-group">
                 <label asp-for="Bishopric.ReleasedFlag" class="control-label"></label>

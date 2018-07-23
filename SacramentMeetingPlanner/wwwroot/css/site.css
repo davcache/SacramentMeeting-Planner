@@ -59,3 +59,10 @@ select {
         display: none;
     }
 }
+
+
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 18px !important;
+}
