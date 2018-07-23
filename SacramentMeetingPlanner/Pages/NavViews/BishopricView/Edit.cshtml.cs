@@ -29,17 +29,41 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
                 return NotFound();
             }
 
-            Bishopric = await _context.Bishopric
-                .Include(m => m.Member).ThenInclude(m => m.MemberName)
-                .Include(m => m.Role).ThenInclude(m => m.RoleTypeName)
-                .FirstOrDefaultAsync(m => m.BishopricID == id);
+            //Bishopric = await _context.Bishopric
+            //    .Include(m => m.Member).ThenInclude(m => m.MemberName)
+            //    .Include(m => m.Role).ThenInclude(m => m.RoleTypeName)
+            //    .FirstOrDefaultAsync(m => m.BishopricID == id);
+
+            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.BishopricID == id);
 
             if (Bishopric == null)
             {
                 return NotFound();
             }
-            //PopulateRoleDropDownList(_context);
+
+            PopulateRoleMembersDropDownList(_context);
+            PopulateRoleDropDownList(_context);
+
             return Page();
+        }
+
+        public SelectList MemberNameSL { get; set; }
+        public void PopulateRoleMembersDropDownList(PlannerContext _context)
+        {
+            var memberQuery = from m in _context.Member
+                              orderby m.MemberName // Sort by MemberName.
+                              select m;
+            MemberNameSL = new SelectList(memberQuery.AsNoTracking(), "MemberID", "MemberName");
+        }
+
+        public SelectList RoleNameSL { get; set; }
+        //public string RoleName { get; set; }
+        public void PopulateRoleDropDownList(PlannerContext _context)
+        {
+            var roleQuery = from d in _context.Role
+                            orderby d.RoleTypeName // Sort by name.
+                            select d;
+            RoleNameSL = new SelectList(roleQuery, "RoleID", "RoleTypeName");
         }
 
         public async Task<IActionResult> OnPostAsync()
