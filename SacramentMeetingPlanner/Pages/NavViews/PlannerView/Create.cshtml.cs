@@ -30,7 +30,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
             var roleQuery = from d in _context.Role
                             orderby d.RoleTypeName // Sort by name.
                             select d.RoleTypeName;
-            MemberNameSL = new SelectList(roleQuery, "RoleID", "RoleTypeName");
+            RoleNameSL = new SelectList(roleQuery, "RoleID", "RoleTypeName");
         }
 
         public SelectList SongNameSL { get; set; }
@@ -40,7 +40,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
             var songQuery = from d in _context.Song
                             orderby d.SongName // Sort by name.
                             select d.SongName;
-            MemberNameSL = new SelectList(songQuery, "SongID", "SongName");
+            SongNameSL = new SelectList(songQuery, "SongID", "SongName");
         }
 
         public SelectList MemberNameSL { get; set; }

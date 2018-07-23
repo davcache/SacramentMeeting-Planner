@@ -268,24 +268,24 @@ namespace SacramentMeetingPlanner.Data
             var plans = new Plans[]
             {
                 new Plans {
-                    PlanDate = DateTime.Parse("2018-22-07"),
-                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "First Counselor").BishopricID
+                    PlanDate = DateTime.Parse("2018-07-22"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "First Counselor").RoleID
                 },
                 new Plans {
-                    PlanDate = DateTime.Parse("2018-15-07"),
-                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
+                    PlanDate = DateTime.Parse("2018-07-15"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "Bishop").RoleID
                 },
                 new Plans {
-                    PlanDate = DateTime.Parse("2018-08-07"),
-                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Second Counselor").BishopricID
+                    PlanDate = DateTime.Parse("2018-07-08"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "Second Counselor").RoleID
                 },
                 new Plans {
-                    PlanDate = DateTime.Parse("2018-01-07"),
-                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
+                    PlanDate = DateTime.Parse("2018-07-01"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "Bishop").RoleID
                 },
                 new Plans {
-                    PlanDate = DateTime.Parse("2018-24-06"),
-                    BishopricID = bishopric.Single( s => s.Role.RoleTypeName == "Bishop").BishopricID
+                    PlanDate = DateTime.Parse("2018-06-24"),
+                    RoleID = roles.Single( s => s.RoleTypeName == "Bishop").RoleID
                 },
             };
 

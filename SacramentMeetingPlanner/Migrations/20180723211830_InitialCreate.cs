@@ -141,6 +141,26 @@ namespace SacramentMeetingPlanner.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Plans",
+                columns: table => new
+                {
+                    PlansID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PlanDate = table.Column<DateTime>(nullable: false),
+                    RoleID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Plans", x => x.PlansID);
+                    table.ForeignKey(
+                        name: "FK_Plans_Role_RoleID",
+                        column: x => x.RoleID,
+                        principalTable: "Role",
+                        principalColumn: "RoleID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SongAssignment",
                 columns: table => new
                 {
@@ -190,26 +210,6 @@ namespace SacramentMeetingPlanner.Migrations
                         column: x => x.SubjectID,
                         principalTable: "Subject",
                         principalColumn: "SubjectID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Plans",
-                columns: table => new
-                {
-                    PlansID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PlanDate = table.Column<DateTime>(nullable: false),
-                    BishopricID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Plans", x => x.PlansID);
-                    table.ForeignKey(
-                        name: "FK_Plans_Bishopric_BishopricID",
-                        column: x => x.BishopricID,
-                        principalTable: "Bishopric",
-                        principalColumn: "BishopricID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -309,9 +309,9 @@ namespace SacramentMeetingPlanner.Migrations
                 column: "RoleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plans_BishopricID",
+                name: "IX_Plans_RoleID",
                 table: "Plans",
-                column: "BishopricID");
+                column: "RoleID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Prayer_MemberID",
@@ -382,6 +382,9 @@ namespace SacramentMeetingPlanner.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Bishopric");
+
+            migrationBuilder.DropTable(
                 name: "Prayer");
 
             migrationBuilder.DropTable(
@@ -412,16 +415,13 @@ namespace SacramentMeetingPlanner.Migrations
                 name: "SongType");
 
             migrationBuilder.DropTable(
-                name: "Bishopric");
-
-            migrationBuilder.DropTable(
-                name: "Subject");
+                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "Member");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "Subject");
         }
     }
 }

@@ -10,7 +10,7 @@ using SacramentMeetingPlanner.Models;
 namespace SacramentMeetingPlanner.Migrations
 {
     [DbContext(typeof(PlannerContext))]
-    [Migration("20180723182144_InitialCreate")]
+    [Migration("20180723211830_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,13 +61,13 @@ namespace SacramentMeetingPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BishopricID");
-
                     b.Property<DateTime>("PlanDate");
+
+                    b.Property<int>("RoleID");
 
                     b.HasKey("PlansID");
 
-                    b.HasIndex("BishopricID");
+                    b.HasIndex("RoleID");
 
                     b.ToTable("Plans");
                 });
@@ -274,9 +274,9 @@ namespace SacramentMeetingPlanner.Migrations
 
             modelBuilder.Entity("SacramentMeetingPlanner.Models.Plans", b =>
                 {
-                    b.HasOne("SacramentMeetingPlanner.Models.Bishopric", "Bishopric")
+                    b.HasOne("SacramentMeetingPlanner.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("BishopricID")
+                        .HasForeignKey("RoleID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
