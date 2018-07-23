@@ -27,7 +27,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
                 return NotFound();
             }
 
-            Subjects = await _context.Subjects.FirstOrDefaultAsync(m => m.ID == id);
+            Subjects = await _context.Subject.FirstOrDefaultAsync(m => m.SubjectID == id);
 
             if (Subjects == null)
             {

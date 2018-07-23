@@ -33,7 +33,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
                 return Page();
             }
 
-            _context.Songs.Add(Songs);
+            _context.Song.Add(Songs);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

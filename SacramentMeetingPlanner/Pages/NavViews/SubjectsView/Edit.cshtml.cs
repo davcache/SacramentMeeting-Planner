@@ -29,7 +29,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
                 return NotFound();
             }
 
-            Subjects = await _context.Subjects.FirstOrDefaultAsync(m => m.ID == id);
+            Subjects = await _context.Subject.FirstOrDefaultAsync(m => m.SubjectID == id);
 
             if (Subjects == null)
             {
@@ -53,7 +53,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SubjectsExists(Subjects.ID))
+                if (!SubjectsExists(Subjects.SubjectID))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
 
         private bool SubjectsExists(int id)
         {
-            return _context.Subjects.Any(e => e.ID == id);
+            return _context.Subject.Any(e => e.SubjectID == id);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
                 return NotFound();
             }
 
-            Subjects = await _context.Subjects.FirstOrDefaultAsync(m => m.ID == id);
+            Subjects = await _context.Subject.FirstOrDefaultAsync(m => m.SubjectID == id);
 
             if (Subjects == null)
             {
@@ -44,11 +44,11 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
                 return NotFound();
             }
 
-            Subjects = await _context.Subjects.FindAsync(id);
+            Subjects = await _context.Subject.FindAsync(id);
 
             if (Subjects != null)
             {
-                _context.Subjects.Remove(Subjects);
+                _context.Subject.Remove(Subjects);
                 await _context.SaveChangesAsync();
             }
 

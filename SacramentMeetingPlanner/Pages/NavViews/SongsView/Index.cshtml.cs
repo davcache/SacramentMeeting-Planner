@@ -22,7 +22,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
 
         public async Task OnGetAsync()
         {
-            Songs = await _context.Songs.ToListAsync();
+            Songs = await _context.Song.ToListAsync();
         }
     }
 }

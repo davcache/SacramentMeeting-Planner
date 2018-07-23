@@ -22,7 +22,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
 
         public async Task OnGetAsync()
         {
-            Subjects = await _context.Subjects.ToListAsync();
+            Subjects = await _context.Subject.ToListAsync();
         }
     }
 }

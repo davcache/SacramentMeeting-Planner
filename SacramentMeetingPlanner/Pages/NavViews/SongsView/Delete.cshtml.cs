@@ -28,7 +28,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
                 return NotFound();
             }
 
-            Songs = await _context.Songs.FirstOrDefaultAsync(m => m.ID == id);
+            Songs = await _context.Song.FirstOrDefaultAsync(m => m.SongID == id);
 
             if (Songs == null)
             {
@@ -44,11 +44,11 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
                 return NotFound();
             }
 
-            Songs = await _context.Songs.FindAsync(id);
+            Songs = await _context.Song.FindAsync(id);
 
             if (Songs != null)
             {
-                _context.Songs.Remove(Songs);
+                _context.Song.Remove(Songs);
                 await _context.SaveChangesAsync();
             }
 

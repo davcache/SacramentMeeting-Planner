@@ -27,7 +27,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
                 return NotFound();
             }
 
-            Songs = await _context.Songs.FirstOrDefaultAsync(m => m.ID == id);
+            Songs = await _context.Song.FirstOrDefaultAsync(m => m.SongID == id);
 
             if (Songs == null)
             {

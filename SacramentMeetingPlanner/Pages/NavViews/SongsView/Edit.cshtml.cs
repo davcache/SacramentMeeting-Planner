@@ -29,7 +29,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
                 return NotFound();
             }
 
-            Songs = await _context.Songs.FirstOrDefaultAsync(m => m.ID == id);
+            Songs = await _context.Song.FirstOrDefaultAsync(m => m.SongID == id);
 
             if (Songs == null)
             {
@@ -53,7 +53,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SongsExists(Songs.ID))
+                if (!SongsExists(Songs.SongID))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
 
         private bool SongsExists(int id)
         {
-            return _context.Songs.Any(e => e.ID == id);
+            return _context.Song.Any(e => e.SongID == id);
         }
     }
 }
