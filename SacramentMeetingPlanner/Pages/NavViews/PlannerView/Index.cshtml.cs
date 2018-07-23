@@ -22,7 +22,26 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
 
         public async Task OnGetAsync()
         {
-            Plans = await _context.Plans.ToListAsync();
+            Plans = await _context.Plans
+                .Include(p => p.Role)
+                .Include(p => p.SongToPlan)
+                    .ThenInclude(p => p.SongAssignment)
+                        .ThenInclude(p => p.Song)
+                .Include(p => p.SongToPlan)
+                    .ThenInclude(p => p.SongAssignment)
+                        .ThenInclude(p => p.SongType)
+                .Include(p => p.PrayerToPlan)
+                    .ThenInclude(p => p.PrayerType)
+                .Include(p => p.PrayerToPlan)
+                    .ThenInclude(p => p.Member)
+                .Include(p => p.SpeakToPlan)
+                    .ThenInclude(p => p.SpeakAssignment)
+                        .ThenInclude(p => p.Member)
+                .Include(p => p.SpeakToPlan)
+                    .ThenInclude(p => p.SpeakAssignment)
+                        .ThenInclude(p => p.Subject)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

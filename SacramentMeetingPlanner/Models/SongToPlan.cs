@@ -21,6 +21,3 @@ namespace SacramentMeetingPlanner.Models
         public SongAssignment SongAssignment { get; set; }
     }
 }
-
-
-        

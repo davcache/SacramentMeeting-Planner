@@ -38,13 +38,13 @@
                 @Html.DisplayFor(modelItem => item.PlanDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @Html.DisplayFor(modelItem => item.Role.RoleTypeName)
             </td>
             <td>
                 @{
                     foreach (var song in item.SongToPlan)
                     {
-                        @song.SongAssignment.SongType @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
+                        @song.SongAssignment.SongType.SongTypeName @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
                     }
                 }
             </td>
