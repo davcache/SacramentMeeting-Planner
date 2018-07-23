@@ -8,17 +8,11 @@ namespace SacramentMeetingPlanner.Models
 {
     public class SongToPlan
     {
-        [Display(Name = "Song To Plan ID")]
-        public int SongToPlanID { get; set; }
-
         [Display(Name = "Plan")]
         public Plans Plans { get; set; }
 
-        [Display(Name = "Song")]
-        public Song Song { get; set; }
-
-        [Display(Name = "Song Type")]
-        public SongType SongType { get; set; }
+        [Display(Name = "Song Assignment")]
+        public SongAssignment SongAssignment { get; set; }
     }
 }
 
