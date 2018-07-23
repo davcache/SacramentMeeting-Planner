@@ -48,9 +48,9 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
         public SelectList MemberNameSL { get; set; }
         public void PopulateRoleMembersDownList(PlannerContext _context)
         {
-            var roleQuery = from d in _context.Members
-                            orderby d.Name // Sort by name.
-                            select d.Name;
+            var roleQuery = from d in _context.Member
+                            orderby d.MemberName // Sort by name.
+                            select d.MemberName;
             MemberNameSL = new SelectList(roleQuery, "MemberID", "Name");
         }
 

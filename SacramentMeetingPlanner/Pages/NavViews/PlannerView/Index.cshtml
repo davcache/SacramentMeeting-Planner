@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Plans[0].Date)
+                @Html.DisplayNameFor(model => model.Plans[0].PlanDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Plans[0].Conducting)
+                @Html.DisplayNameFor(model => model.Plans[0].Bishopric)
             </th>
             <th>
                 Songs
@@ -35,32 +35,32 @@
 @foreach (var item in Model.Plans) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.PlanDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conducting)
+                @Html.DisplayFor(modelItem => item.Bishopric)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningSong)
+                @Html.DisplayFor(modelItem => item.SongToPlan)
                 <br />
-                @Html.DisplayFor(modelItem => item.SacramentSong)
+                @Html.DisplayFor(modelItem => item.SongToPlan)
                 <br />
-                @Html.DisplayFor(modelItem => item.OptIntermSong)
+                @Html.DisplayFor(modelItem => item.SongToPlan)
                 <br />
-                @Html.DisplayFor(modelItem => item.ClosingSong)
+                @Html.DisplayFor(modelItem => item.SongToPlan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningPrayer)
+                @Html.DisplayFor(modelItem => item.PrayerToPlan)
                 <br />
-                @Html.DisplayFor(modelItem => item.ClosingPrayer)
+                @Html.DisplayFor(modelItem => item.PrayerToPlan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Members)
+                @Html.DisplayFor(modelItem => item.SpeakToPlan)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.PlansID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PlansID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PlansID">Delete</a>
             </td>
         </tr>
 }

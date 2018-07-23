@@ -14,49 +14,79 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Plans.Date" class="control-label"></label>
-                <input asp-for="Plans.Date" class="form-control" />
-                <span asp-validation-for="Plans.Date" class="text-danger"></span>
+                <label asp-for="Plans.PlanDate" class="control-label"></label>
+                <input asp-for="Plans.PlanDate" class="form-control" />
+                <span asp-validation-for="Plans.PlanDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Plans.Conducting" class="control-label"></label>
-                <input asp-for="Plans.Conducting" class="form-control" />
-                <span asp-validation-for="Plans.Conducting" class="text-danger"></span>
+                <label asp-for="Plans.Bishopric" class="control-label"></label>
+                <select asp-for="Plans.Bishopric" class="form-control" asp-items="@Model.RoleNameSL">
+                    <option value="">-- Select Bishopric Member --</option>
+                </select>
+                <span asp-validation-for="Plans.Bishopric" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.OpeningSong" class="control-label"></label>
-                <input asp-for="Plans.OpeningSong" class="form-control" />
-                <span asp-validation-for="Plans.OpeningSong" class="text-danger"></span>
+                <label asp-for="Plans.SongToPlan" class="control-label"></label>
+                <select asp-for="Plans.SongToPlan" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Opening Hymn --</option>
+                </select>
+                <span asp-validation-for="Plans.SongToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.OpeningPrayer" class="control-label"></label>
-                <input asp-for="Plans.OpeningPrayer" class="form-control" />
-                <span asp-validation-for="Plans.OpeningPrayer" class="text-danger"></span>
+                <label asp-for="Plans.PrayerToPlan" class="control-label"></label>
+                <select asp-for="Plans.PrayerToPlan" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Plans.PrayerToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SacramentSong" class="control-label"></label>
-                <input asp-for="Plans.SacramentSong" class="form-control" />
-                <span asp-validation-for="Plans.SacramentSong" class="text-danger"></span>
+                <label asp-for="Plans.SongToPlan" class="control-label"></label>
+                <select asp-for="Plans.SongToPlan" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Sacrament Hymn --</option>
+                </select>
+                <span asp-validation-for="Plans.SongToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.Members" class="control-label"></label>
-                <input asp-for="Plans.Members" class="form-control" />
-                <span asp-validation-for="Plans.Members" class="text-danger"></span>
+                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
+                <select asp-for="Plans.SpeakToPlan" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.OptIntermSong" class="control-label"></label>
-                <input asp-for="Plans.OptIntermSong" class="form-control" />
-                <span asp-validation-for="Plans.OptIntermSong" class="text-danger"></span>
+                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
+                <select asp-for="Plans.SpeakToPlan" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.ClosingSong" class="control-label"></label>
-                <input asp-for="Plans.ClosingSong" class="form-control" />
-                <span asp-validation-for="Plans.ClosingSong" class="text-danger"></span>
+                <label asp-for="Plans.SongToPlan" class="control-label"></label>
+                <select asp-for="Plans.SongToPlan" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Intermediate Hymn --</option>
+                </select>
+                <span asp-validation-for="Plans.SongToPlan" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.ClosingPrayer" class="control-label"></label>
-                <input asp-for="Plans.ClosingPrayer" class="form-control" />
-                <span asp-validation-for="Plans.ClosingPrayer" class="text-danger"></span>
+                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
+                <select asp-for="Plans.SpeakToPlan" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.SongToPlan" class="control-label"></label>
+                <select asp-for="Plans.SongToPlan" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Closing Hymn --</option>
+                </select>
+                <span asp-validation-for="Plans.SongToPlan" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans.PrayerToPlan" class="control-label"></label>
+                <select asp-for="Plans.PrayerToPlan" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Plans.PrayerToPlan" class="text-danger" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

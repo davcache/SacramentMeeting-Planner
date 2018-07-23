@@ -13,15 +13,75 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Plans.Date)
+            @Html.DisplayNameFor(model => model.Plans.PlanDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Plans.Date)
+            @Html.DisplayFor(model => model.Plans.PlanDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.Bishopric)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.Bishopric)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SongToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.PrayerToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.PrayerToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SongToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SongToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.SongToPlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plans.PrayerToPlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plans.PrayerToPlan)
         </dd>
     </dl>
 
     <form method="post">
-        <input type="hidden" asp-for="Plans.ID" />
+        <input type="hidden" asp-for="Plans.PlansID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-page="./Index">Back to List</a>
     </form>
