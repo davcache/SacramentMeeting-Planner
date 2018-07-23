@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SacramentMeetingPlanner.Models
 {
-    public class SongType
+    public class Member
     {
-        public int SongTypeID { get; set; }
+        [Display(Name = "Member ID")]
+        public int MemberID { get; set; }
 
-        [Display(Name = "Song Type")]
-        public string SongTypeName { get; set; }
+        [Display(Name = "Member Name")]
+        public string MemberName { get; set; }
     }
 }

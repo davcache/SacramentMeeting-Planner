@@ -13,21 +13,31 @@ namespace SacramentMeetingPlanner.Models
         {
         }
 
+        public DbSet<Role> Role { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<PrayerType> PrayerType { get; set; }
+        public DbSet<Song> Song { get; set; }
+        public DbSet<SongType> SongType { get; set; }
+        public DbSet<Subject> Subject { get; set; }
         public DbSet<Bishopric> Bishopric { get; set; }
-        public DbSet<Plans> Plans { get; set; }
-        public DbSet<Songs> Songs { get; set; }
-        public DbSet<Members> Members { get; set; }
+        public DbSet<PrayerToPlan> PrayerToPlan { get; set; }
+        public DbSet<SongToPlan> SongToPlan { get; set; }
         public DbSet<SpeakToPlan> SpeakToPlan { get; set; }
-        public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<Plans> Plans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Role>().ToTable("Role");
+            modelBuilder.Entity<Member>().ToTable("Member");
+            modelBuilder.Entity<PrayerType>().ToTable("PrayerType");
+            modelBuilder.Entity<Song>().ToTable("Song");
+            modelBuilder.Entity<SongType>().ToTable("SongType");
+            modelBuilder.Entity<Subject>().ToTable("Subject");
             modelBuilder.Entity<Bishopric>().ToTable("Bishopric");
-            modelBuilder.Entity<Plans>().ToTable("Plans");
-            modelBuilder.Entity<Songs>().ToTable("Songs");
-            modelBuilder.Entity<Members>().ToTable("Members");
+            modelBuilder.Entity<PrayerToPlan>().ToTable("PrayerToPlan");
+            modelBuilder.Entity<SongToPlan>().ToTable("SongToPlan");
             modelBuilder.Entity<SpeakToPlan>().ToTable("SpeakToPlan");
-            modelBuilder.Entity<Subjects>().ToTable("Subjects");
+            modelBuilder.Entity<Plans>().ToTable("Plans");
 
             //modelBuilder.Entity<Plans>()
             //    .HasKey(c => new { c.SpeakerToPlanId });

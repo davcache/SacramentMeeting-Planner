@@ -24,7 +24,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SubjectsView
         }
 
         [BindProperty]
-        public Subjects Subjects { get; set; }
+        public Subject Subjects { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

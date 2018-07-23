@@ -18,7 +18,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
             _context = context;
         }
 
-        public IList<Songs> Songs { get;set; }
+        public IList<Song> Songs { get;set; }
 
         public async Task OnGetAsync()
         {

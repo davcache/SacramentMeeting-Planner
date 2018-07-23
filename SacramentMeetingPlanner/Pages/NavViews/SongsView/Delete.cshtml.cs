@@ -19,7 +19,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.SongsView
         }
 
         [BindProperty]
-        public Songs Songs { get; set; }
+        public Song Songs { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

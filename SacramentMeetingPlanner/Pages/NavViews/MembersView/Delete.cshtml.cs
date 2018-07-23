@@ -19,7 +19,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
         }
 
         [BindProperty]
-        public Members Members { get; set; }
+        public Member Members { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
