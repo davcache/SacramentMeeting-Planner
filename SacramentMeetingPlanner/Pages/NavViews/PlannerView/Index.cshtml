@@ -44,7 +44,7 @@
                 @{
                     foreach (var song in item.SongToPlan)
                     {
-                        @song.SongType.SongTypeName @song.Song.SongNumber @:  @song.Song.SongName <br />
+                        @song.SongAssignment.SongType @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
                     }
                 }
             </td>
@@ -52,7 +52,7 @@
                 @{
                     foreach (var prayer in item.PrayerToPlan)
                     {
-                        @prayer.PrayerType.PrayerTypeName @:  @prayer.Member <br />
+                        @prayer.Prayer.PrayerType @:  @prayer.Prayer.Member <br />
                     }
                 }
             </td>
@@ -60,7 +60,7 @@
                 @{
                     foreach (var speaker in item.SpeakToPlan)
                     {
-                        @speaker.SpeakerPlacement @speaker.Member.MemberName @:  @speaker.Subject.SubjectName <br />
+                        @speaker.SpeakAssignment.SpeakerPlacement @speaker.SpeakAssignment.Member.MemberName @:  @speaker.SpeakAssignment.Subject.SubjectName <br />
                     }
                 }
             </td>

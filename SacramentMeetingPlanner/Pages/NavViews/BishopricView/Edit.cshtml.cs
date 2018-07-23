@@ -29,7 +29,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
                 return NotFound();
             }
 
-            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.ID == id);
+            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.BishopricID == id);
 
             if (Bishopric == null)
             {
@@ -53,7 +53,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BishopricExists(Bishopric.ID))
+                if (!BishopricExists(Bishopric.BishopricID))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
 
         private bool BishopricExists(int id)
         {
-            return _context.Bishopric.Any(e => e.ID == id);
+            return _context.Bishopric.Any(e => e.BishopricID == id);
         }
     }
 }

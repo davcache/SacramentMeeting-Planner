@@ -28,7 +28,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.BishopricView
                 return NotFound();
             }
 
-            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.ID == id);
+            Bishopric = await _context.Bishopric.FirstOrDefaultAsync(m => m.BishopricID == id);
 
             if (Bishopric == null)
             {

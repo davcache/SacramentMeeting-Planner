@@ -27,7 +27,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
                 return NotFound();
             }
 
-            Members = await _context.Members.FirstOrDefaultAsync(m => m.ID == id);
+            Members = await _context.Member.FirstOrDefaultAsync(m => m.MemberID == id);
 
             if (Members == null)
             {

@@ -28,7 +28,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
                 return NotFound();
             }
 
-            Members = await _context.Members.FirstOrDefaultAsync(m => m.ID == id);
+            Members = await _context.Member.FirstOrDefaultAsync(m => m.MemberID == id);
 
             if (Members == null)
             {
@@ -44,11 +44,11 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
                 return NotFound();
             }
 
-            Members = await _context.Members.FindAsync(id);
+            Members = await _context.Member.FindAsync(id);
 
             if (Members != null)
             {
-                _context.Members.Remove(Members);
+                _context.Member.Remove(Members);
                 await _context.SaveChangesAsync();
             }
 

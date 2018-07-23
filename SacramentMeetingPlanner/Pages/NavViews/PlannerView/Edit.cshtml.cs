@@ -29,7 +29,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
                 return NotFound();
             }
 
-            Plans = await _context.Plans.FirstOrDefaultAsync(m => m.ID == id);
+            Plans = await _context.Plans.FirstOrDefaultAsync(m => m.PlansID == id);
 
             if (Plans == null)
             {
@@ -53,7 +53,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlansExists(Plans.ID))
+                if (!PlansExists(Plans.PlansID))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
 
         private bool PlansExists(int id)
         {
-            return _context.Plans.Any(e => e.ID == id);
+            return _context.Plans.Any(e => e.PlansID == id);
         }
     }
 }
