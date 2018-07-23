@@ -13,306 +13,535 @@ namespace SacramentMeetingPlanner.Data
             //context.Database.EnsureCreated();
 
             // Look for any subjects.
-            if (context.Subjects.Any())
+            if (context.Role.Any())
             {
                 return;   // DB has been seeded
             }
 
-            // ------------------------------------Members----------------------------------
-            var members = new Members[]
+            // ------------------------------------Role----------------------------------
+            var roles = new Role[]
             {
-                new Members {
-                    Name = "Michael Jordan"
+                new Role {
+                    RoleTypeName = "Bishop"
                 },
-                new Members {
-                    Name = "Gandhi"
+                new Role {
+                    RoleTypeName = "First Counselor"
                 },
-                new Members {
-                    Name = "Donald Trump Jr."
-                },
-                new Members {
-                    Name = "Dick Van Dyke"
-                },
-                new Members {
-                    Name = "Benjamin Franklin"
-                },
-                new Members {
-                    Name = "Winston Churchill"
-                },
-                new Members {
-                    Name = "Bill Gates"
-                },
-                new Members {
-                    Name = "Steve Jobs"
-                },
-                new Members {
-                    Name = "Elvis Presley"
-                },
-                new Members {
-                    Name = "Mother Teresa"
-                },
-                new Members {
-                    Name = "Martin Luther King"
-                },
-                new Members {
-                    Name = "JFK"
-                },
-                new Members {
-                    Name = "Abraham Lincoln"
-                },
-                new Members {
-                    Name = "Leonardo da Vinci"
-                },
-                new Members {
-                    Name = "Tom Cruise"
+                new Role {
+                    RoleTypeName = "Second Counselor"
                 }
             };
 
-            foreach (Members m in members)
+            foreach (Role role in roles)
             {
-                context.Members.Add(m);
+                context.Role.Add(role);
             }
             context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------Member----------------------------------
+            var members = new Member[]
+            {
+                new Member {
+                    MemberName = "Michael Jordan"
+                },
+                new Member {
+                    MemberName = "Gandhi"
+                },
+                new Member {
+                    MemberName = "Donald Trump Jr."
+                },
+                new Member {
+                    MemberName = "Dick Van Dyke"
+                },
+                new Member {
+                    MemberName = "Benjamin Franklin"
+                },
+                new Member {
+                    MemberName = "Winston Churchill"
+                },
+                new Member {
+                    MemberName = "Bill Gates"
+                },
+                new Member {
+                    MemberName = "Steve Jobs"
+                },
+                new Member {
+                    MemberName = "Elvis Presley"
+                },
+                new Member {
+                    MemberName = "Mother Teresa"
+                },
+                new Member {
+                    MemberName = "Martin Luther King"
+                },
+                new Member {
+                    MemberName = "JFK"
+                },
+                new Member {
+                    MemberName = "Abraham Lincoln"
+                },
+                new Member {
+                    MemberName = "Leonardo da Vinci"
+                },
+                new Member {
+                    MemberName = "Tom Cruise"
+                }
+            };
+
+            foreach (Member m in members)
+            {
+                context.Member.Add(m);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------PrayerType----------------------------------
+            var prayerTypes = new PrayerType[]
+            {
+                new PrayerType {
+                    PrayerTypeName = "Opening Prayer"
+                },
+                new PrayerType {
+                    PrayerTypeName = "Closing Prayer"
+                }
+            };
+
+            foreach (PrayerType prayerType in prayerTypes)
+            {
+                context.PrayerType.Add(prayerType);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------Songs----------------------------------
+            var songs = new Song[]
+            {
+                new Song {
+                    SongName = "I Saw a Mighty Angel Fly",
+                    SongNumber = 15
+                },
+                new Song {
+                    SongName = "We Thank Thee, O God, for a Prophet",
+                    SongNumber = 19
+                },
+                new Song {
+                    SongName = "While of These Emblems We Partake",
+                    SongNumber = 173
+                },
+                new Song {
+                    SongName = "Reverently and Meekly Now",
+                    SongNumber = 185
+                },
+                new Song {
+                    SongName = "I Stand All Amazed",
+                    SongNumber = 193
+                },
+                new Song {
+                    SongName = "He Is Risen!",
+                    SongNumber = 199
+                },
+                new Song {
+                    SongName = "Put Your Shoulder to the Wheel",
+                    SongNumber = 252
+                },
+                new Song {
+                    SongName = "Hope of Israel",
+                    SongNumber = 259
+                },
+                new Song {
+                    SongName = "Arise, O God, and Shine",
+                    SongNumber = 265
+                },
+                new Song {
+                    SongName = "The Iron Rod",
+                    SongNumber = 274
+                }
+            };
+
+            foreach (Song song in songs)
+            {
+                context.Song.Add(song);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------SongType----------------------------------
+            var songTypes = new SongType[]
+            {
+                new SongType {
+                    SongTypeName = "Opening Song"
+                },
+                new SongType {
+                    SongTypeName = "Sacrament Song"
+                },
+                new SongType {
+                    SongTypeName = "Intermediate Song"
+                },
+                new SongType {
+                    SongTypeName = "Closing Song"
+                }
+            };
+
+            foreach (SongType songType in songTypes)
+            {
+                context.SongType.Add(songType);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------Subject----------------------------------
+            var subjects = new Subject[]
+            {
+                new Subject {
+                    SubjectName = "Hope"
+                },
+                new Subject {
+                    SubjectName = "Repentance"
+                },
+                new Subject {
+                    SubjectName = "Love"
+                },
+                new Subject {
+                    SubjectName = "Ministering"
+                },
+                new Subject {
+                    SubjectName = "Family Home Evening"
+                },
+                new Subject {
+                    SubjectName = "Tithing"
+                },
+                new Subject {
+                    SubjectName = "The Atonement"
+                },
+                new Subject {
+                    SubjectName = "The Relief Society"
+                },
+                new Subject {
+                    SubjectName = "The Priesthood"
+                },
+                new Subject {
+                    SubjectName = "Magnifying Callings"
+                }
+            };
+
+            foreach (Subject subject in subjects)
+            {
+                context.Subject.Add(subject);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
 
             // ------------------------------------Bishopric----------------------------------
             var bishopric = new Bishopric[]
             {
                 new Bishopric {
-                    Member = members.Single( s => s.Name == "Michael Jordan"),
-                    Role = Role.Bishop
+                    Role = roles.Single( s => s.RoleTypeName == "Bishop"),
+                    Member = members.Single( s => s.MemberName == "Michael Jordan")
                 },
                 new Bishopric {
-                    Member = members.Single( s => s.Name == "Gandhi"),
-                    Role = Role.First_Counselor
+                    Role = roles.Single( s => s.RoleTypeName == "First Counselor"),
+                    Member = members.Single( s => s.MemberName == "Gandhi")
                 },
                 new Bishopric {
-                    Member = members.Single( s => s.Name == "Donald Trump Jr."),
-                    Role = Role.Second_Counselor
+                    Role = roles.Single( s => s.RoleTypeName == "Second Counselor"),
+                    Member = members.Single( s => s.MemberName == "Donald Trump Jr.")
                 },
                 new Bishopric {
-                    Member = members.Single( s => s.Name == "Dick Van Dyke"),
-                    Role = Role.Bishop,
+                    Role = roles.Single( s => s.RoleTypeName == "Bishop"),
+                    Member = members.Single( s => s.MemberName == "Dick Van Dyke"),
                     ReleasedFlag = true
                 },
                 new Bishopric {
-                    Member = members.Single( s => s.Name == "Benjamin Franklin"),
-                    Role = Role.First_Counselor,
+                    Role = roles.Single( s => s.RoleTypeName == "First Counselor"),
+                    Member = members.Single( s => s.MemberName == "Benjamin Franklin"),
                     ReleasedFlag = true
                 }
             };
 
-            foreach (Bishopric b in bishopric)
+            foreach (Bishopric bishopricPeeps in bishopric)
             {
-                context.Bishopric.Add(b);
+                context.Bishopric.Add(bishopricPeeps);
             }
             context.SaveChanges();
+            // ----------------------------------------------------------------------------
 
-            // ------------------------------------Songs----------------------------------
-            var songs = new Songs[]
+
+
+
+
+
+
+
+
+
+
+
+
+            // ------------------------------------Plans----------------------------------
+            var plans = new Plans[]
             {
-                new Songs {
-                    Name = "I Saw a Mighty Angel Fly",
-                    Number = 15
+                new Plans {
+                    Date = DateTime.Parse("2018-22-07"),
+                    Bishopric = bishopric.Single( s => s.Name == "Michael Jordan"),
+                    PrayerToPlan = ,
+                    SongToPlan = ,
+                    SpeakToPlan = 
                 },
-                new Songs {
-                    Name = "We Thank Thee, O God, for a Prophet",
-                    Number = 19
-                },
-                new Songs {
-                    Name = "While of These Emblems We Partake",
-                    Number = 173
-                },
-                new Songs {
-                    Name = "Reverently and Meekly Now",
-                    Number = 185
-                },
-                new Songs {
-                    Name = "I Stand All Amazed",
-                    Number = 193
-                },
-                new Songs {
-                    Name = "He Is Risen!",
-                    Number = 199
-                },
-                new Songs {
-                    Name = "Put Your Shoulder to the Wheel",
-                    Number = 252
-                },
-                new Songs {
-                    Name = "Hope of Israel",
-                    Number = 259
-                },
-                new Songs {
-                    Name = "Arise, O God, and Shine",
-                    Number = 265
-                },
-                new Songs {
-                    Name = "The Iron Rod",
-                    Number = 274
-                }
             };
 
-            foreach (Songs so in songs)
+            foreach (Plans plan in plans)
             {
-                context.Songs.Add(so);
+                context.Plans.Add(plan);
             }
             context.SaveChanges();
+            // ----------------------------------------------------------------------------
 
-            // ------------------------------------Subjects----------------------------------
-            var subjects = new Subjects[]
+            // ------------------------------------PrayerToPlan----------------------------------
+            var prayerToPlans = new PrayerToPlan[]
             {
-                new Subjects {
-                    SubjectName = "Hope"
+                new PrayerToPlan {
+                    Plans = ,
+                    PrayerType = ,
+                    Member = ,
                 },
-                new Subjects {
-                    SubjectName = "Repentance"
-                },
-                new Subjects {
-                    SubjectName = "Love"
-                },
-                new Subjects {
-                    SubjectName = "Ministering"
-                },
-                new Subjects {
-                    SubjectName = "Family Home Evening"
-                },
-                new Subjects {
-                    SubjectName = "Tithing"
-                },
-                new Subjects {
-                    SubjectName = "The Atonement"
-                },
-                new Subjects {
-                    SubjectName = "The Relief Society"
-                },
-                new Subjects {
-                    SubjectName = "The Priesthood"
-                },
-                new Subjects {
-                    SubjectName = "Magnifying Callings"
-                }
+
             };
 
-            foreach (Subjects su in subjects)
+            foreach (PrayerToPlan prayerToPlan in prayerToPlans)
             {
-                context.Subjects.Add(su);
+                context.PrayerToPlan.Add(prayerToPlan);
             }
             context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+            // ------------------------------------SongToPlan----------------------------------
+            var songToPlans = new SongToPlan[]
+            {
+                new SongToPlan {
+                    Plans = ,
+                    Song = ,
+                    SongType = 
+                },
+
+            };
+
+            foreach (SongToPlan songToPlan in songToPlans)
+            {
+                context.SongToPlan.Add(songToPlan);
+            }
+            context.SaveChanges();
+            // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // ------------------------------------SpeakToPlan----------------------------------
-            //public int SpeakerToPlanId { get; set; }
-            //public Members SpeakerName { get; set; }
-            //public int SpeakerPlacement { get; set; }
-            //public Subjects Subject { get; set; }
             var speakToPlan = new SpeakToPlan[]
             {
                 new SpeakToPlan {
-                    SpeakerToPlanId = 321,
-                    SpeakerName = members.Single( s => s.Name == "Dick Van Dyke"),
                     SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 1),
+                    Member = members.Single( s => s.MemberName == "Dick Van Dyke"),
                     Subject = subjects.Single( s => s.SubjectName == "Hope")
                 },
                 new SpeakToPlan {
-                    SpeakerToPlanId = 321,
-                    SpeakerName = members.Single( s => s.Name == "Benjamin Franklin"),
                     SpeakerPlacement = 2,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Benjamin Franklin"),
                     Subject = subjects.Single( s => s.SubjectName == "Repentance")
+
+                    SpeakerToPlanId = 321,
+                    SpeakerName = members.Single( s => s.MemberName == ""),
+                    SpeakerPlacement = 2,
+                    Subject = subjects.Single( s => s.SubjectName == "")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 321,
-                    SpeakerName = members.Single( s => s.Name == "Winston Churchill"),
+                    SpeakerName = members.Single( s => s.MemberName == "Winston Churchill"),
                     SpeakerPlacement = 3,
                     Subject = subjects.Single( s => s.SubjectName == "Love")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 321,
-                    SpeakerName = members.Single( s => s.Name == "Bill Gates"),
+                    SpeakerName = members.Single( s => s.MemberName == "Bill Gates"),
                     SpeakerPlacement = 4,
                     Subject = subjects.Single( s => s.SubjectName == "Ministering")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 322,
-                    SpeakerName = members.Single( s => s.Name == "Steve Jobs"),
+                    SpeakerName = members.Single( s => s.MemberName == "Steve Jobs"),
                     SpeakerPlacement = 1,
                     Subject = subjects.Single( s => s.SubjectName == "Family Home Evening")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 322,
-                    SpeakerName = members.Single( s => s.Name == "Elvis Presley"),
+                    SpeakerName = members.Single( s => s.MemberName == "Elvis Presley"),
                     SpeakerPlacement = 2,
                     Subject = subjects.Single( s => s.SubjectName == "Tithing")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 322,
-                    SpeakerName = members.Single( s => s.Name == "Mother Teresa"),
+                    SpeakerName = members.Single( s => s.MemberName == "Mother Teresa"),
                     SpeakerPlacement = 3,
                     Subject = subjects.Single( s => s.SubjectName == "The Atonement")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 323,
-                    SpeakerName = members.Single( s => s.Name == "Martin Luther King"),
+                    SpeakerName = members.Single( s => s.MemberName == "Martin Luther King"),
                     SpeakerPlacement = 1,
                     Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 323,
-                    SpeakerName = members.Single( s => s.Name == "JFK"),
+                    SpeakerName = members.Single( s => s.MemberName == "JFK"),
                     SpeakerPlacement = 2,
                     Subject = subjects.Single( s => s.SubjectName == "The Priesthood")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 323,
-                    SpeakerName = members.Single( s => s.Name == "Abraham Lincoln"),
+                    SpeakerName = members.Single( s => s.MemberName == "Abraham Lincoln"),
                     SpeakerPlacement = 3,
                     Subject = subjects.Single( s => s.SubjectName == "Magnifying Callings")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 323,
-                    SpeakerName = members.Single( s => s.Name == "Leonardo da Vinci"),
+                    SpeakerName = members.Single( s => s.MemberName == "Leonardo da Vinci"),
                     SpeakerPlacement = 4,
                     Subject = subjects.Single( s => s.SubjectName == "Hope")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 324,
-                    SpeakerName = members.Single( s => s.Name == "Tom Cruise"),
+                    SpeakerName = members.Single( s => s.MemberName == "Tom Cruise"),
                     SpeakerPlacement = 1,
                     Subject = subjects.Single( s => s.SubjectName == "Repentance")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 324,
-                    SpeakerName = members.Single( s => s.Name == "Dick Van Dyke"),
+                    SpeakerName = members.Single( s => s.MemberName == "Dick Van Dyke"),
                     SpeakerPlacement = 2,
                     Subject = subjects.Single( s => s.SubjectName == "Love")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 324,
-                    SpeakerName = members.Single( s => s.Name == "Benjamin Franklin"),
+                    SpeakerName = members.Single( s => s.MemberName == "Benjamin Franklin"),
                     SpeakerPlacement = 3,
                     Subject = subjects.Single( s => s.SubjectName == "Ministering")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 325,
-                    SpeakerName = members.Single( s => s.Name == "Winston Churchill"),
+                    SpeakerName = members.Single( s => s.MemberName == "Winston Churchill"),
                     SpeakerPlacement = 1,
                     Subject = subjects.Single( s => s.SubjectName == "Family Home Evening")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 325,
-                    SpeakerName = members.Single( s => s.Name == "Bill Gates"),
+                    SpeakerName = members.Single( s => s.MemberName == "Bill Gates"),
                     SpeakerPlacement = 2,
                     Subject = subjects.Single( s => s.SubjectName == "Tithing")
                 },
                 new SpeakToPlan {
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
+                    Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                     SpeakerToPlanId = 325,
-                    SpeakerName = members.Single( s => s.Name == "Steve Jobs"),
+                    SpeakerName = members.Single( s => s.MemberName == "Steve Jobs"),
                     SpeakerPlacement = 3,
                     Subject = subjects.Single( s => s.SubjectName == "The Atonement")
                 },
                 new SpeakToPlan {
-                    SpeakerToPlanId = 325,
-                    SpeakerName = members.Single( s => s.Name == "Elvis Presley"),
-                    SpeakerPlacement = 4,
+                    SpeakerPlacement = 1,
+                    Plans = plans.Single( s => s.PlansID == 10000),
+                    Member = members.Single( s => s.MemberName == "Elvis Presley"),
                     Subject = subjects.Single( s => s.SubjectName == "The Relief Society")
+
                 }
             };
 
@@ -322,33 +551,7 @@ namespace SacramentMeetingPlanner.Data
             }
             context.SaveChanges();
 
-            // ------------------------------------SpeakToPlan----------------------------------
-            //public DateTime Date { get; set; }
-            //public Bishopric Conducting { get; set; }
-            //public Members OpeningPrayer { get; set; }
-            //public Songs OpeningSong { get; set; }
-            //public Songs SacramentSong { get; set; }
-            //public Songs OptIntermSong { get; set; }
-            //public Members ClosingPrayer { get; set; }
-
-            //var plans = new Plans[]
-            //{
-            //    new Plans {
-            //        Date = DateTime.Parse("2018-22-07"),
-            //        Conducting = bishopric.Single( s => s.Name == "Michael Jordan"),
-            //        OpeningPrayer = members.Single( s => s.Name == "_____"),
-            //        OpeningSong = songs.Single( s => s.Name == "_____"),
-            //        SacramentSong = songs.Single( s => s.Name == "_____"),
-            //        OptIntermSong = songs.Single( s => s.Name == "_____"),
-            //        ClosingPrayer = members.Single( s => s.Name == "_____")
-            //    },
-            //};
-
-            //foreach (Plans p in plans)
-            //{
-            //    context.Plans.Add(p);
-            //}
-            //context.SaveChanges();
+            
 
         }
     }

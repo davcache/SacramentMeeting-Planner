@@ -7,9 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentMeetingPlanner.Models
 {
-    public class Subjects
+    public class Subject
     {
-        public int ID { get; set; }
+        [Display(Name = "Subject ID")]
+        public int SubjectID { get; set; }
 
         [Display(Name = "Subject")]
         public string SubjectName { get; set; }

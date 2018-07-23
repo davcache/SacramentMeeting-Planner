@@ -6,28 +6,18 @@ using System.Threading.Tasks;
 
 namespace SacramentMeetingPlanner.Models
 {
-    public enum Role
-    {
-        Bishop, First_Counselor, Second_Counselor
-    }
-
     public class Bishopric
     {
-        public int ID { get; set; }
-
-        [Display(Name = "Member ID")]
-        public Members Member { get; set; }
-
         [Display(Name = "Bishopric ID")]
         public int BishopricID { get; set; }
 
-        //public Members Name { get; set; }
+        [Display(Name = "Role")]
         public Role Role { get; set; }
 
-        [Display(Name = "Released Flag")]
-        public bool? ReleasedFlag { get; set; } = false;
+        [Display(Name = "Member Name")]
+        public Member Member { get; set; }
 
-        
-        
+        [Display(Name = "Released Flag")]
+        public bool ReleasedFlag { get; set; } = false;
     }
 }

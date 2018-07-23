@@ -18,7 +18,7 @@ namespace SacramentMeetingPlanner.Pages.NavViews.MembersView
             _context = context;
         }
 
-        public IList<Members> Members { get;set; }
+        public IList<Member> Members { get;set; }
 
         public async Task OnGetAsync()
         {

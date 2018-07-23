@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace SacramentMeetingPlanner.Models
 {
-    public class SpeakToPlan
+    public class PrayerToPlan
     {
-        [Display(Name = "Speaker To Plan ID")]
-        public int SpeakToPlanID { get; set; }
-
-        [Display(Name = "Speaker Placement")]
-        public int SpeakerPlacement { get; set; }
+        [Display(Name = "Prayer To Plan ID")]
+        public int PrayerToPlanID { get; set; }
 
         [Display(Name = "Plan")]
         public Plans Plans { get; set; }
 
+        [Display(Name = "Prayer Type")]
+        public PrayerType PrayerType { get; set; }
+
         [Display(Name = "Member")]
         public Member Member { get; set; }
-
-        [Display(Name = "Subject")]
-        public Subject Subject { get; set; }
     }
 }
