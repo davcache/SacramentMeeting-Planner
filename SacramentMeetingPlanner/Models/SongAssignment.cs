@@ -15,11 +15,10 @@ namespace SacramentMeetingPlanner.Models
         [Display(Name = "Song")]
         public int SongID { get; set; }
 
-        public Song Song { get; set; }
-
         [Display(Name = "Song Type")]
         public int SongTypeID { get; set; }
 
+        public Song Song { get; set; }
         public SongType SongType { get; set; }
 
         [Display(Name = "Songs")]
