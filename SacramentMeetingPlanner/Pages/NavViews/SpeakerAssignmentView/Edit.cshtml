@@ -1,0 +1,45 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.NavViews.SpeakerAssignmentView.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Speaker Assignment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SpeakAssignment.SpeakAssignmentID" />
+            <div class="form-group">
+                <label asp-for="SpeakAssignment.MemberID" class="control-label"></label>
+                <select asp-for="SpeakAssignment.MemberID" class="form-control" asp-items="ViewBag.MemberID"></select>
+                <span asp-validation-for="SpeakAssignment.MemberID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeakAssignment.SubjectID" class="control-label"></label>
+                <select asp-for="SpeakAssignment.SubjectID" class="form-control" asp-items="ViewBag.SubjectID"></select>
+                <span asp-validation-for="SpeakAssignment.SubjectID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeakAssignment.SpeakerPlacement" class="control-label"></label>
+                <input asp-for="SpeakAssignment.SpeakerPlacement" class="form-control" />
+                <span asp-validation-for="SpeakAssignment.SpeakerPlacement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
