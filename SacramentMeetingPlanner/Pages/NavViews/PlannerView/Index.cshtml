@@ -7,7 +7,7 @@
 
 <h2>Sacrament Meeting Plans</h2>
 
-<p>
+<p> 
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
@@ -17,8 +17,8 @@
                 @Html.DisplayNameFor(model => model.Plans[0].PlanDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Plans[0].Role)
-            </th>
+                Conducting
+            </th> 
             <th>
                 Songs
             </th>
@@ -44,7 +44,7 @@
                 @{
                     foreach (var song in item.SongToPlan)
                     {
-                        @song.SongAssignment.SongType.SongTypeName @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
+                        @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
                     }
                 }
             </td>
@@ -52,7 +52,7 @@
                 @{
                     foreach (var prayer in item.PrayerToPlan)
                     {
-                        @prayer.PrayerType.PrayerTypeName @:  @prayer.Member.MemberName <br />
+                        @prayer.Member.MemberName <br />
                     }
                 }
             </td>
@@ -60,7 +60,7 @@
                 @{
                     foreach (var speaker in item.SpeakToPlan)
                     {
-                        @speaker.SpeakAssignment.SpeakerPlacement @speaker.SpeakAssignment.Member.MemberName @:  @speaker.SpeakAssignment.Subject.SubjectName <br />
+                        @speaker.SpeakAssignment.Member.MemberName <br />
                     }
                 }
             </td>
