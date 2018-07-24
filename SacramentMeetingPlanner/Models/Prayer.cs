@@ -21,5 +21,8 @@ namespace SacramentMeetingPlanner.Models
         public int MemberID { get; set; }
 
         public Member Member { get; set; }
+
+        [Display(Name = "Prayers")]
+        public ICollection<PrayerToPlan> PrayerToPlan { get; set; }
     }
 }

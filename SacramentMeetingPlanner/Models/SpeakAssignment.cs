@@ -24,5 +24,9 @@ namespace SacramentMeetingPlanner.Models
 
         [Display(Name = "Speaker Placement")]
         public int SpeakerPlacement { get; set; }
+
+        [Display(Name = "Speakers")]
+        public ICollection<SpeakToPlan> SpeakToPlan { get; set; }
+
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SacramentMeetingPlanner.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Yolotwo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -221,7 +221,8 @@ namespace SacramentMeetingPlanner.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     PlansID = table.Column<int>(nullable: true),
                     PrayerTypeID = table.Column<int>(nullable: false),
-                    MemberID = table.Column<int>(nullable: false)
+                    MemberID = table.Column<int>(nullable: false),
+                    PrayerID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,6 +238,12 @@ namespace SacramentMeetingPlanner.Migrations
                         column: x => x.PlansID,
                         principalTable: "Plans",
                         principalColumn: "PlansID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PrayerToPlan_Prayer_PrayerID",
+                        column: x => x.PrayerID,
+                        principalTable: "Prayer",
+                        principalColumn: "PrayerID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PrayerToPlan_PrayerType_PrayerTypeID",
@@ -334,6 +341,11 @@ namespace SacramentMeetingPlanner.Migrations
                 column: "PlansID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PrayerToPlan_PrayerID",
+                table: "PrayerToPlan",
+                column: "PrayerID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PrayerToPlan_PrayerTypeID",
                 table: "PrayerToPlan",
                 column: "PrayerTypeID");
@@ -385,9 +397,6 @@ namespace SacramentMeetingPlanner.Migrations
                 name: "Bishopric");
 
             migrationBuilder.DropTable(
-                name: "Prayer");
-
-            migrationBuilder.DropTable(
                 name: "PrayerToPlan");
 
             migrationBuilder.DropTable(
@@ -397,7 +406,7 @@ namespace SacramentMeetingPlanner.Migrations
                 name: "SpeakToPlan");
 
             migrationBuilder.DropTable(
-                name: "PrayerType");
+                name: "Prayer");
 
             migrationBuilder.DropTable(
                 name: "SongAssignment");
@@ -407,6 +416,9 @@ namespace SacramentMeetingPlanner.Migrations
 
             migrationBuilder.DropTable(
                 name: "SpeakAssignment");
+
+            migrationBuilder.DropTable(
+                name: "PrayerType");
 
             migrationBuilder.DropTable(
                 name: "Song");

@@ -99,6 +99,8 @@ namespace SacramentMeetingPlanner.Migrations
 
                     b.Property<int?>("PlansID");
 
+                    b.Property<int?>("PrayerID");
+
                     b.Property<int>("PrayerTypeID");
 
                     b.HasKey("PrayerToPlanID");
@@ -106,6 +108,8 @@ namespace SacramentMeetingPlanner.Migrations
                     b.HasIndex("MemberID");
 
                     b.HasIndex("PlansID");
+
+                    b.HasIndex("PrayerID");
 
                     b.HasIndex("PrayerTypeID");
 
@@ -302,6 +306,10 @@ namespace SacramentMeetingPlanner.Migrations
                         .WithMany("PrayerToPlan")
                         .HasForeignKey("PlansID");
 
+                    b.HasOne("SacramentMeetingPlanner.Models.Prayer")
+                        .WithMany("PrayerToPlan")
+                        .HasForeignKey("PrayerID");
+
                     b.HasOne("SacramentMeetingPlanner.Models.PrayerType", "PrayerType")
                         .WithMany()
                         .HasForeignKey("PrayerTypeID")
@@ -329,7 +337,7 @@ namespace SacramentMeetingPlanner.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.SongAssignment", "SongAssignment")
-                        .WithMany()
+                        .WithMany("SongToPlan")
                         .HasForeignKey("SongAssignmentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -355,7 +363,7 @@ namespace SacramentMeetingPlanner.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SacramentMeetingPlanner.Models.SpeakAssignment", "SpeakAssignment")
-                        .WithMany()
+                        .WithMany("SpeakToPlan")
                         .HasForeignKey("SpeakAssignmentID");
                 });
 #pragma warning restore 612, 618

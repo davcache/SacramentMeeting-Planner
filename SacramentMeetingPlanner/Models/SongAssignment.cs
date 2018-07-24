@@ -21,5 +21,8 @@ namespace SacramentMeetingPlanner.Models
         public int SongTypeID { get; set; }
 
         public SongType SongType { get; set; }
+
+        [Display(Name = "Songs")]
+        public ICollection<SongToPlan> SongToPlan { get; set; }
     }
 }
