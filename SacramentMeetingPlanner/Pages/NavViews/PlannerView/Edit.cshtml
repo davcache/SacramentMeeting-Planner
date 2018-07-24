@@ -13,64 +13,128 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Plans.PlansID" />
             <div class="form-group">
                 <label asp-for="Plans.PlanDate" class="control-label"></label>
                 <input asp-for="Plans.PlanDate" class="form-control" />
                 <span asp-validation-for="Plans.PlanDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Plans.Role" class="control-label"></label>
-                <input asp-for="Plans.Role" class="form-control" />
-                <span asp-validation-for="Plans.Role" class="text-danger"></span>
+                <label asp-for="Plans.Role.RoleTypeName" class="control-label">Conducting</label>
+                <select asp-for="Plans.Role.RoleTypeName" class="form-control" asp-items="@Model.RoleNameSL">
+                    <option value="">-- Select Bishopric Member --</option>
+                </select>
+                <span asp-validation-for="Plans.Role.RoleTypeName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SongToPlan" class="control-label"></label>
-                <input asp-for="Plans.SongToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SongToPlan" class="text-danger"></span>
+                <input type="hidden" value="1" asp-for="SongAssignment.SongTypeID" />
+                <label asp-for="SongAssignment.Song.SongName" class="control-label">Opening Hymn</label>
+                <select asp-for="SongAssignment.Song.SongName" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Opening Hymn --</option>
+                </select>
+                <span asp-validation-for="SongAssignment.Song.SongName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.PrayerToPlan" class="control-label"></label>
-                <input asp-for="Plans.PrayerToPlan" class="form-control" />
-                <span asp-validation-for="Plans.PrayerToPlan" class="text-danger"></span>
+                <input type="hidden" value="1" asp-for="Prayer.PrayerTypeID" />
+                <label asp-for="Prayer.Member.MemberName" class="control-label">Opening Prayer</label>
+                <select asp-for="Prayer.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Prayer.Member.MemberName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SongToPlan" class="control-label"></label>
-                <input asp-for="Plans.SongToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SongToPlan" class="text-danger"></span>
+                <input type="hidden" value="2" asp-for="SongAssignment.SongTypeID" />
+                <label asp-for="SongAssignment.Song.SongName" class="control-label">Sacrament Hymn</label>
+                <select asp-for="SongAssignment.Song.SongName" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Sacrament Hymn --</option>
+                </select>
+                <span asp-validation-for="SongAssignment.Song.SongName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
-                <input asp-for="Plans.SpeakToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger"></span>
+                <input type="hidden" value="1" asp-for="SpeakAssignment.SpeakerPlacement" />
+                <label asp-for="SpeakAssignment.Member.MemberName" class="control-label">First Speaker</label>
+                <select asp-for="SpeakAssignment.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Member.MemberName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
-                <input asp-for="Plans.SpeakToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger"></span>
+                <label asp-for="SpeakAssignment.Subject.SubjectName" class="control-label">Subject for First Speaker</label>
+                <select asp-for="SpeakAssignment.Subject.SubjectName" class="form-control" asp-items="@Model.SubjectNameSL">
+                    <option value="">-- Select Subject --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Subject.SubjectName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SongToPlan" class="control-label"></label>
-                <input asp-for="Plans.SongToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SongToPlan" class="text-danger"></span>
+                <input type="hidden" value="2" asp-for="SpeakAssignment.SpeakerPlacement" />
+                <label asp-for="SpeakAssignment.Member.MemberName" class="control-label">Second Speaker</label>
+                <select asp-for="SpeakAssignment.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Member.MemberName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SpeakToPlan" class="control-label"></label>
-                <input asp-for="Plans.SpeakToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SpeakToPlan" class="text-danger"></span>
+                <label asp-for="SpeakAssignment.Subject.SubjectName" class="control-label">Subject for Second Speaker</label>
+                <select asp-for="SpeakAssignment.Subject.SubjectName" class="form-control" asp-items="@Model.SubjectNameSL">
+                    <option value="">-- Select Subject --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Subject.SubjectName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.SongToPlan" class="control-label"></label>
-                <input asp-for="Plans.SongToPlan" class="form-control" />
-                <span asp-validation-for="Plans.SongToPlan" class="text-danger"></span>
+                <input type="hidden" value="3" asp-for="SongAssignment.SongTypeID" />
+                <label asp-for="SongAssignment.Song.SongName" class="control-label">Intermediate Hymn (optional)</label>
+                <select asp-for="SongAssignment.Song.SongName" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Intermediate Hymn --</option>
+                </select>
+                <span asp-validation-for="SongAssignment.Song.SongName" class="text-danger" />
             </div>
             <div class="form-group">
-                <label asp-for="Plans.PrayerToPlan" class="control-label"></label>
-                <input asp-for="Plans.PrayerToPlan" class="form-control" />
-                <span asp-validation-for="Plans.PrayerToPlan" class="text-danger"></span>
+                <input type="hidden" value="3" asp-for="SpeakAssignment.SpeakerPlacement" />
+                <label asp-for="SpeakAssignment.Member.MemberName" class="control-label">Third Speaker</label>
+                <select asp-for="SpeakAssignment.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Member.MemberName" class="text-danger" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <label asp-for="SpeakAssignment.Subject.SubjectName" class="control-label">Subject for Third Speaker</label>
+                <select asp-for="SpeakAssignment.Subject.SubjectName" class="form-control" asp-items="@Model.SubjectNameSL">
+                    <option value="">-- Select Subject --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Subject.SubjectName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="4" asp-for="SpeakAssignment.SpeakerPlacement" />
+                <label asp-for="SpeakAssignment.Member.MemberName" class="control-label">Fourth Speaker</label>
+                <select asp-for="SpeakAssignment.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Member.MemberName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeakAssignment.Subject.SubjectName" class="control-label">Subject for Fourth Speaker</label>
+                <select asp-for="SpeakAssignment.Subject.SubjectName" class="form-control" asp-items="@Model.SubjectNameSL">
+                    <option value="">-- Select Subject --</option>
+                </select>
+                <span asp-validation-for="SpeakAssignment.Subject.SubjectName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="4" asp-for="SongAssignment.SongTypeID" />
+                <label asp-for="SongAssignment.Song.SongName" class="control-label">Closing Hymn</label>
+                <select asp-for="SongAssignment.Song.SongName" class="form-control" asp-items="@Model.SongNameSL">
+                    <option value="">-- Select Closing Hymn --</option>
+                </select>
+                <span asp-validation-for="SongAssignment.Song.SongName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="2" asp-for="Prayer.PrayerTypeID" />
+                <label asp-for="Prayer.Member.MemberName" class="control-label">Closing Prayer</label>
+                <select asp-for="Prayer.Member.MemberName" class="form-control" asp-items="@Model.MemberNameSL">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="Prayer.Member.MemberName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
