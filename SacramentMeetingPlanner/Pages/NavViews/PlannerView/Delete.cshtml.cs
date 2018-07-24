@@ -28,7 +28,25 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
                 return NotFound();
             }
 
-            Plans = await _context.Plans.FirstOrDefaultAsync(m => m.PlansID == id);
+            Plans = await _context.Plans
+                .Include(p => p.Role)
+                .Include(p => p.SongToPlan)
+                    .ThenInclude(p => p.SongAssignment)
+                        .ThenInclude(p => p.Song)
+                .Include(p => p.SongToPlan)
+                    .ThenInclude(p => p.SongAssignment)
+                        .ThenInclude(p => p.SongType)
+                .Include(p => p.PrayerToPlan)
+                    .ThenInclude(p => p.PrayerType)
+                .Include(p => p.PrayerToPlan)
+                    .ThenInclude(p => p.Member)
+                .Include(p => p.SpeakToPlan)
+                    .ThenInclude(p => p.SpeakAssignment)
+                        .ThenInclude(p => p.Member)
+                .Include(p => p.SpeakToPlan)
+                    .ThenInclude(p => p.SpeakAssignment)
+                        .ThenInclude(p => p.Subject)
+                .FirstOrDefaultAsync(m => m.PlansID == id);
 
             if (Plans == null)
             {

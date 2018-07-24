@@ -18,65 +18,73 @@
         <dd>
             @Html.DisplayFor(model => model.Plans.PlanDate)
         </dd>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Plans.Role)
+            Conducting
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Plans.Role)
+            @Html.DisplayFor(model => model.Plans.Role.RoleTypeName)
         </dd>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+            @*Songs*@
+            @*Html.DisplayFor(model => model.Plans.SongToPlan*@
+            @{
+                foreach (var item in Model.Plans.SongToPlan)
+                {
+                    @item.SongAssignment.SongType.SongTypeName <br />
+                }
+            }
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Plans.SongToPlan)
+            @{
+                foreach (var item in Model.Plans.SongToPlan)
+                {
+                    @item.SongAssignment.Song.SongNumber @::&nbsp;&nbsp; @item.SongAssignment.Song.SongName <br />
+                }
+            }
         </dd>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Plans.PrayerToPlan)
+            @*Prayers*@
+            @*Html.DisplayFor(model => model.Plans.PrayerToPlan)*@
+            @{
+                foreach (var prayer in Model.Plans.PrayerToPlan)
+                {
+                    @prayer.PrayerType.PrayerTypeName <br />
+                }
+            }
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Plans.PrayerToPlan)
+            @{
+                foreach (var prayer in Model.Plans.PrayerToPlan)
+                {
+                    @prayer.Member.MemberName <br />
+                }
+            }
         </dd>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
+            @*Speakers/Topics*@
+            @*Html.DisplayFor(model => model.Plans.SongToPlan)*@
+            @{
+                foreach (var speaker in Model.Plans.SpeakToPlan)
+                {
+                    @:Speaker&nbsp; @speaker.SpeakAssignment.SpeakerPlacement <br />
+                }
+            }
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Plans.SongToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.SongToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.SpeakToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.SpeakToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.SongToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.SongToPlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plans.PrayerToPlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plans.PrayerToPlan)
+            @{
+                foreach (var speaker in Model.Plans.SpeakToPlan)
+                {
+                    @speaker.SpeakAssignment.Member.MemberName @:&nbsp;will be speaking on&nbsp;  @speaker.SpeakAssignment.Subject.SubjectName <br />
+                }
+            }
         </dd>
     </dl>
 

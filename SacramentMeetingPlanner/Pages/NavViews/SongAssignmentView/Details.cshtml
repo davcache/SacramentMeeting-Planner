@@ -1,0 +1,31 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.NavViews.SongAssignmentView.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Song Assignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SongAssignment.Song)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SongAssignment.Song.SongName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SongAssignment.SongType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SongAssignment.SongType.SongTypeName) 
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SongAssignment.SongAssignmentID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
