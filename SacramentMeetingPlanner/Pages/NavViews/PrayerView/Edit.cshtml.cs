@@ -37,8 +37,8 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PrayerView
             {
                 return NotFound();
             }
-           ViewData["MemberID"] = new SelectList(_context.Member, "MemberID", "MemberID");
-           ViewData["PrayerTypeID"] = new SelectList(_context.PrayerType, "PrayerTypeID", "PrayerTypeID");
+           ViewData["MemberID"] = new SelectList(_context.Member, "MemberID", "MemberName");
+           ViewData["PrayerTypeID"] = new SelectList(_context.PrayerType, "PrayerTypeID", "PrayerTypeName");
             return Page();
         }
 
