@@ -20,15 +20,10 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
 
         public IActionResult OnGet()
         {
-            var plans = new Plans();
-            plans.SongToPlan = new List<SongToPlan>();
-            plans.SpeakToPlan = new List<SpeakToPlan>();
-            plans.PrayerToPlan = new List<PrayerToPlan>();
-
             PopulateRoleDropDownList(_context);
-            //PopulateSongNamesDownList(_context); // Works but leads to creation of a multiple select dropdown list
-            PopulateSongDataDropDown(_context, plans);
+            PopulateSongNamesDownList(_context);
             PopulateRoleMembersDownList(_context);
+            PopulateSubjectsDownList(_context);
             return Page();
         }
 
@@ -59,8 +54,26 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
             MemberNameSL = new SelectList(memberRoleQuery, "MemberID", "MemberName", selectedMember);
         }
 
+        public SelectList SubjectNameSL { get; set; }
+        public void PopulateSubjectsDownList(PlannerContext _context, object selectedSubject = null)
+        {
+            var subjectNameQuery = from d in _context.Subject
+                                  orderby d.SubjectName // Sort by name.
+                                  select d;
+            SubjectNameSL = new SelectList(subjectNameQuery, "SubjectID", "SubjectName", selectedSubject);
+        }
+
         [BindProperty]
         public Plans Plans { get; set; }
+
+        [BindProperty]
+        public SongAssignment SongAssignment { get; set; }
+
+        [BindProperty]
+        public SpeakAssignment SpeakAssignment { get; set; }
+
+        [BindProperty]
+        public Prayer Prayer { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -70,29 +83,12 @@ namespace SacramentMeetingPlanner.Pages.NavViews.PlannerView
             }
 
             _context.Plans.Add(Plans);
+            _context.SongAssignment.Add(SongAssignment);
+            _context.SpeakAssignment.Add(SpeakAssignment);
+            _context.Prayer.Add(Prayer);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
-
-        public List<SongAssignment> AssignedSongDataList;
-
-        public void PopulateSongDataDropDown(PlannerContext context, Plans plans)
-        {
-            var allSongAssignments = context.SongAssignment;
-            var planSongs = new HashSet<int>(
-                plans.SongToPlan.Select(s => s.SongAssignmentID));
-            AssignedSongDataList = new List<SongAssignment>();
-            foreach (var assignment in allSongAssignments)
-            {
-                AssignedSongDataList.Add(new SongAssignment
-                {
-                    SongID = assignment.SongID,
-                    Song = assignment.Song,
-                    SongTypeID = assignment.SongTypeID,
-                    SongType = assignment.SongType
-                });
-            }
         }
     }
 }

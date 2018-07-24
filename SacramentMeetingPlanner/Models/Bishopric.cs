@@ -18,7 +18,7 @@ namespace SacramentMeetingPlanner.Models
         [Display(Name = "Member Name")]
         public int MemberID { get; set; }
 
-        [Display(Name = "Released Flag")]
+        [Display(Name = "Released")]
         public bool ReleasedFlag { get; set; } = false;
 
         public Role Role { get; set; }
