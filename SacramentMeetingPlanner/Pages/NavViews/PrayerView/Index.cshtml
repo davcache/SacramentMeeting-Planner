@@ -1,4 +1,5 @@
-﻿@page
+﻿@*Prayer view Index*@
+@page
 @model SacramentMeetingPlanner.Pages.NavViews.PrayerView.IndexModel
 
 @{
@@ -23,20 +24,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Prayer) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrayerType.PrayerTypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Member.MemberName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.PrayerID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PrayerID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PrayerID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Prayer)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrayerType.PrayerTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.MemberName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PrayerID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PrayerID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PrayerID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

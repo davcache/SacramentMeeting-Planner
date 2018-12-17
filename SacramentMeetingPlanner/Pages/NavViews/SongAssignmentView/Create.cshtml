@@ -1,4 +1,5 @@
-﻿@page
+﻿@*Song assign view Create*@
+@page
 @model SacramentMeetingPlanner.Pages.NavViews.SongAssignmentView.CreateModel
 
 @{
@@ -15,11 +16,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SongAssignment.SongID" class="control-label"></label>
-                <select asp-for="SongAssignment.SongID" class ="form-control" asp-items="ViewBag.SongID"></select>
+                <select asp-for="SongAssignment.SongID" class="form-control" asp-items="ViewBag.SongID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="SongAssignment.SongTypeID" class="control-label"></label>
-                <select asp-for="SongAssignment.SongTypeID" class ="form-control" asp-items="ViewBag.SongTypeID"></select>
+                <select asp-for="SongAssignment.SongTypeID" class="form-control" asp-items="ViewBag.SongTypeID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

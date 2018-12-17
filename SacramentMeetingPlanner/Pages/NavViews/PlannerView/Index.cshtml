@@ -1,4 +1,5 @@
-﻿@page
+﻿@*Planner view Index*@
+@page
 @model SacramentMeetingPlanner.Pages.NavViews.PlannerView.IndexModel
 
 @{
@@ -7,7 +8,7 @@
 
 <h2>Sacrament Meeting Plans</h2>
 
-<p> 
+<p>
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
@@ -18,7 +19,7 @@
             </th>
             <th>
                 Conducting
-            </th> 
+            </th>
             <th>
                 Songs
             </th>
@@ -32,44 +33,45 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Plans) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.RoleTypeName)
-            </td>
-            <td>
-                @{
-                    foreach (var song in item.SongToPlan)
-                    {
-                        @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
+        @foreach (var item in Model.Plans)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.RoleTypeName)
+                </td>
+                <td>
+                    @{
+                        foreach (var song in item.SongToPlan)
+                        {
+                            @song.SongAssignment.Song.SongNumber @:  @song.SongAssignment.Song.SongName <br />
+                        }
                     }
-                }
-            </td>
-            <td>
-                @{
-                    foreach (var prayer in item.PrayerToPlan)
-                    {
-                        @prayer.Member.MemberName <br />
+                </td>
+                <td>
+                    @{
+                        foreach (var prayer in item.PrayerToPlan)
+                        {
+                            @prayer.Member.MemberName <br />
+                        }
                     }
-                }
-            </td>
-            <td>
-                @{
-                    foreach (var speaker in item.SpeakToPlan)
-                    {
-                        @speaker.SpeakAssignment.Member.MemberName <br />
+                </td>
+                <td>
+                    @{
+                        foreach (var speaker in item.SpeakToPlan)
+                        {
+                            @speaker.SpeakAssignment.Member.MemberName <br />
+                        }
                     }
-                }
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.PlansID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PlansID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PlansID">Delete</a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PlansID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PlansID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PlansID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

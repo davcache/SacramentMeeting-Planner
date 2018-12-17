@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-
+//Migrations page
 namespace SacramentMeetingPlanner.Migrations
 {
     public partial class Yolotwo : Migration

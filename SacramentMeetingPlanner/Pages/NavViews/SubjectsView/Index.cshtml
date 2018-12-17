@@ -1,4 +1,5 @@
-﻿@page
+﻿@*Subject view Index*@
+@page
 @model SacramentMeetingPlanner.Pages.NavViews.SubjectsView.IndexModel
 
 @{
@@ -20,17 +21,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Subjects) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubjectName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SubjectID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SubjectID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SubjectID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Subjects)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.SubjectID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.SubjectID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.SubjectID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

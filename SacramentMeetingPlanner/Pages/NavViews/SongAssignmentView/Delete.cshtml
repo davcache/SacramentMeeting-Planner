@@ -1,4 +1,5 @@
-﻿@page
+﻿@*Song assign view Delete*@
+@page
 @model SacramentMeetingPlanner.Pages.NavViews.SongAssignmentView.DeleteModel
 
 @{
@@ -25,7 +26,7 @@
             @Html.DisplayFor(model => model.SongAssignment.SongType.SongTypeName)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="SongAssignment.SongAssignmentID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |

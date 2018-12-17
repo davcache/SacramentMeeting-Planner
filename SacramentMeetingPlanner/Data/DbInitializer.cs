@@ -2,6 +2,7 @@
 using System.Linq;
 using SacramentMeetingPlanner.Models;
 
+//Seperation of duties
 namespace SacramentMeetingPlanner.Data
 {
     public static class DbInitializer

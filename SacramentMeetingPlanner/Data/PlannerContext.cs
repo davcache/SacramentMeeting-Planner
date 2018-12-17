@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
+//Planner context
 namespace SacramentMeetingPlanner.Models
 {
     public class PlannerContext : DbContext
@@ -44,11 +40,6 @@ namespace SacramentMeetingPlanner.Models
             modelBuilder.Entity<SpeakToPlan>().ToTable("SpeakToPlan");
             modelBuilder.Entity<SpeakAssignment>().ToTable("SpeakAssignment");
             modelBuilder.Entity<Plans>().ToTable("Plans");
-
-            //modelBuilder.Entity<Plans>()
-            //    .HasKey(c => new { c.SpeakerToPlanId });
-            //modelBuilder.Entity<SpeakToPlan>()
-            //    .HasKey(c => new { c.SpeakerToPlanId });
         }
     }
 }
